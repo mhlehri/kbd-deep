@@ -43,7 +43,7 @@ const NavMenu = ({ className }: { className?: string }) => {
 
 export default function Navbar() {
   return (
-    <div className="backdrop-blur-lg bg-inherit text-zinc-600">
+    <nav className="backdrop-blur-lg text-zinc-600 sticky top-0 z-50 bg-white/70">
       <Container>
         <div className="flex justify-between py-5 items-center flex-row-reverse sm:flex-row">
           {/* responsive */}
@@ -96,6 +96,6 @@ export default function Navbar() {
           </div>
         </div>
       </Container>
-    </div>
+    </nav>
   );
 }

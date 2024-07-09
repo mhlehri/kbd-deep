@@ -1,4 +1,5 @@
 import ProductCard from "../ProductCard";
+import { Button } from "../ui/button";
 
 const productData = [
   {
@@ -92,16 +93,17 @@ const productData = [
   },
 ];
 
-export default function Featured() {
+export default function FeaturedProduct() {
   return (
     <section>
       <h1 className="text-3xl font-medium mb-2">Featured Keyboard</h1>
-      <p className="mb-10 text-zinc-500">Check out our featured keyboard</p>
-      <div className="flex gap-2">
+      <p className="text-zinc-500">Check out our featured keyboard</p>
+      <div className="flex gap-2 my-10">
         {productData.map((product, index) => (
           <ProductCard key={index} product={product} />
         ))}
       </div>
+      <Button>See More</Button>
     </section>
   );
 }

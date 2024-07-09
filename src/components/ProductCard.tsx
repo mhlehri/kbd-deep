@@ -45,7 +45,7 @@ export default function ProductCard({ product }: { product: any }) {
         <CardDescription>{brand}</CardDescription>
         <div className="flex justify-between items-center">
           <CardDescription>Stock: {stock}</CardDescription>
-          <p>{price}</p>
+          <p>${price}</p>
         </div>
         <Rating rating={rating} />
       </CardContent>
