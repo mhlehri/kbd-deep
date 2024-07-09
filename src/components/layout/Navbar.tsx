@@ -1,13 +1,18 @@
-import { NavLink } from "react-router-dom";
-import Container from "../container";
+import { Keyboard } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
+import Container from "./container";
 
 export default function Navbar() {
   return (
-    <nav className="backdrop-blur-lg bg-emerald-600 text-white">
+    <div className="backdrop-blur-lg bg-emerald-600 text-white">
       <Container>
-        <div className="flex gap-10 py-5 items-center">
-          <h1 className="text-xl font-semibold">KBD Deep</h1>
-          <ul className="flex gap-3">
+        <div className="flex justify-between py-5 items-center">
+          <Link to="/">
+            <h1 className="text-xl font-semibold flex gap-2 items-center">
+              <Keyboard className="size-7" /> KBD Deep
+            </h1>
+          </Link>
+          <ul className="md:flex gap-3 hidden">
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
@@ -26,6 +31,6 @@ export default function Navbar() {
           </ul>
         </div>
       </Container>
-    </nav>
+    </div>
   );
 }

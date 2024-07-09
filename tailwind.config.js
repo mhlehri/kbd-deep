@@ -1,13 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-// eslint-disable-next-line no-undef
 module.exports = {
-  content: [
-    "./index.html",
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -74,6 +67,5 @@ module.exports = {
       },
     },
   },
-  // eslint-disable-next-line no-undef
   plugins: [require("tailwindcss-animate")],
 };
