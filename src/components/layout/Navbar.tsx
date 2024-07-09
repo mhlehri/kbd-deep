@@ -12,6 +12,35 @@ export function Logo() {
   );
 }
 
+const navLinks = [
+  { title: "Home", to: "/" },
+  { title: "Products", to: "/products" },
+  { title: "About Us", to: "/about-us" },
+  { title: "Contact Us", to: "/contact-us" },
+  { title: "Dashboard", to: "/dashboard" },
+];
+
+const NavMenu = ({ className }: { className?: string }) => {
+  return (
+    <ul className={`${className} flex`}>
+      {navLinks.map((link, index) => (
+        <li key={index}>
+          <NavLink
+            to={link.to}
+            className={({ isActive }) =>
+              isActive
+                ? "text-black"
+                : "text-zinc-600" + " hover:text-black hover:underline"
+            }
+          >
+            {link.title}
+          </NavLink>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 export default function Navbar() {
   return (
     <div className="backdrop-blur-lg bg-inherit text-zinc-600">
@@ -29,23 +58,9 @@ export default function Navbar() {
                 <SheetHeader>
                   <Logo />
                 </SheetHeader>
-                <ul className="flex gap-3 flex-col mt-4 hover:*:underline hover:*:tracking-wider *:duration-300">
-                  <li>
-                    <NavLink to="/">Home</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/products">Products</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/about-us">About Us</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/contact-us">Contact Us</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/dashboard">Dashboard</NavLink>
-                  </li>
-                </ul>
+
+                <NavMenu className="gap-3 flex-col mt-4" />
+
                 <div className="flex gap-5 mt-4 sm:hidden">
                   <button>
                     <Search />
@@ -60,42 +75,24 @@ export default function Navbar() {
               </SheetContent>
             </Sheet>
           </div>
+
           <div className="flex gap-10 items-center">
             <Link to="/">
               <Logo />
             </Link>
 
-            <button className="sm:hidden">
-              <Search />
-            </button>
-            <ul className="md:flex gap-5 hidden">
-              <li>
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/products">Products</NavLink>
-              </li>
-              <li>
-                <NavLink to="/about-us">About Us</NavLink>
-              </li>
-              <li>
-                <NavLink to="/contact-us">Contact Us</NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard">Dashboard</NavLink>
-              </li>
-            </ul>
+            <NavMenu className="md:flex gap-5 hidden" />
           </div>
           <div className="sm:flex gap-5 hidden">
             <button>
               <Search />
             </button>
-            <button className="relative">
+            <Link to="/cart" className="relative">
               <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
                 0
               </span>
               <ShoppingBag />
-            </button>
+            </Link>
           </div>
         </div>
       </Container>
