@@ -29,7 +29,7 @@ export const Hero = () => {
   }, [nextSlider]);
 
   return (
-    <div className="flex my-4">
+    <div className="flex my-4 flex-col md:flex-row">
       <div className="h-72 w-full transform overflow-hidden rounded-lg before:bg-black/50 sm:h-96 md:h-[540px] lg:gap-10">
         {carouselImages.map((slide, index) => {
           const { img, title, des, offer } = slide;
@@ -85,7 +85,7 @@ export const Hero = () => {
           );
         })}
       </div>
-      <div className="flex flex-col items-center justify-end gap-3 pl-3">
+      <div className="flex md:flex-col items-center justify-end gap-3 pt-3 md:pl-3">
         {carouselImages.map((slide, index) => {
           const { img, title } = slide;
           return (
@@ -94,7 +94,7 @@ export const Hero = () => {
               src={img}
               width={1200}
               height={600}
-              className={`h-6 w-10 bg-black/20 sm:h-8 md:h-12 md:w-20 ${
+              className={`bg-black/20 h-12 w-20 ${
                 currentSlider === index
                   ? "opacity-100 ring ring-zinc-500"
                   : "opacity-60"
