@@ -1,0 +1,37 @@
+import { MessageSquareHeart, Sparkles, Trophy, Truck } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+
+export default function Service() {
+  return (
+    <div className="flex gap-5">
+      <Card>
+        <CardHeader>
+          <Truck />
+          <CardTitle>Free Shipping</CardTitle>
+          <CardDescription>On all orders over $100</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <Sparkles />
+          <CardTitle>Top Quality</CardTitle>
+          <CardDescription>Quality products</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <Trophy />
+          <CardTitle>Top Brands</CardTitle>
+          <CardDescription>Shop from top brands</CardDescription>
+        </CardHeader>
+      </Card>
+      <Card>
+        <CardHeader>
+          <MessageSquareHeart />
+          <CardTitle>24/7 Support</CardTitle>
+          <CardDescription>Ready for you</CardDescription>
+        </CardHeader>
+      </Card>
+    </div>
+  );
+}
