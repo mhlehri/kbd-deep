@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function Service() {
   return (
-    <div className="flex gap-5 flex-wrap md:justify-normal justify-center">
+    <section className="flex gap-5 flex-wrap md:justify-normal justify-center">
       <Card>
         <CardHeader>
           <Truck />
@@ -32,6 +32,6 @@ export default function Service() {
           <CardDescription>Ready for you</CardDescription>
         </CardHeader>
       </Card>
-    </div>
+    </section>
   );
 }

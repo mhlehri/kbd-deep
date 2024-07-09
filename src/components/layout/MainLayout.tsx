@@ -4,7 +4,7 @@ import Container from "./container";
 
 export default function MainLayout() {
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar />
       <Container>
         <Outlet />

@@ -29,7 +29,7 @@ export const Hero = () => {
   }, [nextSlider]);
 
   return (
-    <div className="flex my-4 flex-col md:flex-row">
+    <section className="flex my-4 flex-col md:flex-row">
       <div className="h-72 w-full transform overflow-hidden rounded-lg before:bg-black/50 sm:h-96 md:h-[540px] lg:gap-10">
         {carouselImages.map((slide, index) => {
           const { img, title, des, offer } = slide;
@@ -105,6 +105,6 @@ export const Hero = () => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
