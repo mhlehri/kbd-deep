@@ -14,7 +14,7 @@ export function Logo() {
 
 export default function Navbar() {
   return (
-    <div className="backdrop-blur-lg bg-zinc-50 text-zinc-600">
+    <div className="backdrop-blur-lg bg-inherit text-zinc-600">
       <Container>
         <div className="flex justify-between py-5 items-center flex-row-reverse sm:flex-row">
           {/* responsive */}
@@ -64,6 +64,10 @@ export default function Navbar() {
             <Link to="/">
               <Logo />
             </Link>
+
+            <button className="sm:hidden">
+              <Search />
+            </button>
             <ul className="md:flex gap-5 hidden">
               <li>
                 <NavLink to="/">Home</NavLink>
