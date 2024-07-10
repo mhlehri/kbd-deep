@@ -1,12 +1,13 @@
 import React from "react";
 import { Logo } from "./Navbar";
 import { Link } from "react-router-dom";
+import Container from "./container";
 
 export default function Footer() {
   return (
     <footer>
       <div className="bg-gray-100 px-4 py-20">
-        <div className="container mx-auto">
+        <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Link to="/">
               <Logo />
@@ -46,10 +47,10 @@ export default function Footer() {
               </ul>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
       <div className="bg-gray-200 p-4">
-        <div className="container mx-auto">
+        <Container>
           <div className="flex justify-between">
             <p>&copy; 2024 KBD DEEP. All rights reserved.</p>
             <p>
@@ -59,7 +60,7 @@ export default function Footer() {
               </a>
             </p>
           </div>
-        </div>
+        </Container>
       </div>
     </footer>
   );

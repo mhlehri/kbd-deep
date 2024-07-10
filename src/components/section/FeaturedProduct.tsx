@@ -1,5 +1,6 @@
 import { productData } from "../../dummy/products.dummy";
-import ProductCard from "../ProductCard";
+import ProductCard from "../card/ProductCard";
+
 import { Button } from "../ui/button";
 
 export default function FeaturedProduct() {

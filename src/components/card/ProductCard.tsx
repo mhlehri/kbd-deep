@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
 import {
   Card,
   CardContent,
@@ -7,7 +6,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "../ui/card";
+import { Button } from "../ui/button";
 
 const Rating = ({ rating }: { rating: number }) => {
   return (
