@@ -6,7 +6,7 @@ import Testimonial from "../components/section/Testimonial";
 
 export default function Home() {
   return (
-    <div className="space-y-24 mb-20">
+    <div className="space-y-28 mb-20 overflow-hidden">
       <Hero />
       <Service />
       <FeaturedProduct />

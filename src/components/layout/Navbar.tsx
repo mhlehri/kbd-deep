@@ -1,8 +1,8 @@
-import { Keyboard, Menu, Search, ShoppingBag } from "lucide-react";
+import { Keyboard, Menu, ShoppingBag } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import Container from "./container";
-import { Button } from "../ui/button";
 
 export function Logo() {
   return (
@@ -62,9 +62,6 @@ export default function Navbar() {
                 <NavMenu className="gap-3 flex-col mt-4" />
 
                 <div className="flex gap-5 mt-4 sm:hidden">
-                  <button>
-                    <Search />
-                  </button>
                   <button className="relative">
                     <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
                       0
@@ -84,9 +81,6 @@ export default function Navbar() {
             <NavMenu className="md:flex gap-5 hidden" />
           </div>
           <div className="sm:flex gap-5 hidden">
-            <button>
-              <Search />
-            </button>
             <Link to="/cart" className="relative">
               <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
                 0

@@ -8,7 +8,7 @@ export default function MainLayout() {
     <main>
       <Navbar />
       <div className="overflow-hidden">
-        <Container>
+        <Container className="min-h-screen">
           <Outlet />
         </Container>
       </div>
