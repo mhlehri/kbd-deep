@@ -51,7 +51,9 @@ export default function ProductCard({ product }: { product: any }) {
       </CardContent>
       <CardFooter>
         <Link to="/" className="w-full">
-          <Button className="w-full">View</Button>
+          <Button variant="outline" className="w-full">
+            View Details
+          </Button>
         </Link>
       </CardFooter>
     </Card>

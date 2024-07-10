@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 export function Logo() {
   return (
     <h1 className="text-xl text-black font-semibold flex gap-2 items-center">
-      <Keyboard /> KBD Deep
+      <Keyboard /> KBD DEEP
     </h1>
   );
 }

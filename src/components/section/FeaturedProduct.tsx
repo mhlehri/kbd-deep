@@ -8,15 +8,6 @@ const productData = [
     stock: 20,
     price: 250,
     rating: 4,
-    image:
-      "/images/140 Keys Ink Lotus Blossom Keycaps Set, OEM Profile Japanese Ink Keycaps, Keycap for Mechanical Keyboard, Double Shot PBT Keycaps Set.jpeg",
-  },
-  {
-    title: "K95 RGB Platinum",
-    brand: "Corsair",
-    stock: 20,
-    price: 250,
-    rating: 4,
     image: "/images/K95_RGB_Platinum.jpeg",
   },
   {
