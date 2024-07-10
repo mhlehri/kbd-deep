@@ -1,4 +1,4 @@
-import { ShoppingBag } from "lucide-react";
+import { DollarSign, ShoppingBag, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { CartTable } from "../components/table/CartTable";
@@ -14,7 +14,23 @@ export default function Cart() {
             <ShoppingBag /> Shopping Cart
           </h1>
           <CartTable />
-          <PricingDetails />
+          <div className="flex justify-between items-center">
+            <div className="space-y-2">
+              <h1 className="text-3xl flex items-center gap-2">
+                <ShoppingCart /> Shop More
+              </h1>
+              <h1 className="text-3xl flex items-center gap-2">
+                <DollarSign /> Save More{" "}
+              </h1>
+              <p className="text-zinc-600">
+                Get free shipping on orders over $200.00
+              </p>
+              <Button>
+                <a href="/products">Continue Shopping</a>
+              </Button>
+            </div>
+            <PricingDetails />
+          </div>
         </div>
       ) : (
         <div className="text-center flex flex-col justify-center items-center h-[80vh]">
