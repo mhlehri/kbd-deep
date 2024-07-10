@@ -1,13 +1,35 @@
+import AddProductForm from "../components/form/AddProductForm";
 import ProductTable from "../components/table/ProductTable";
+import { Button } from "../components/ui/button";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
 
 export default function Dashboard() {
   return (
     <div className="space-y-10">
-      <h1 className="text-2xl mt-10 font-semibold">Dashboard</h1>
-      <div>
-        <h2 className="text-xl font-semibold mb-3">All Products</h2>
-        <ProductTable />
+      <div className="flex flex-wrap gap-10 items-center mt-10 justify-between">
+        <h1 className="text-2xl  font-semibold">Dashboard</h1>
       </div>
+      <Tabs defaultValue="all-products">
+        <TabsList className="bg-transparent mb-5 border p-0">
+          <TabsTrigger value="all-products" asChild>
+            <Button variant="ghost">All Products</Button>
+          </TabsTrigger>
+          <TabsTrigger value="add-new-product" asChild>
+            <Button variant="ghost">Add New Products</Button>
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="all-products">
+          <ProductTable />
+        </TabsContent>
+        <TabsContent value="add-new-product">
+          <AddProductForm />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }
