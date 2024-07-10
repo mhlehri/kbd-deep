@@ -3,7 +3,7 @@ import slide4 from "/images/hero/4.jpg";
 import slide5 from "/images/hero/5.jpg";
 import slide1 from "/images/hero/6.png";
 
-export const Hero = () => {
+export default function Hero() {
   const [currentSlider, setCurrentSlider] = useState(0);
 
   const carouselImages = [
@@ -107,4 +107,4 @@ export const Hero = () => {
       </div>
     </section>
   );
-};
+}

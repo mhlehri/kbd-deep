@@ -1,6 +1,6 @@
 import FeaturedBrand from "../components/section/FeaturedBrand";
 import FeaturedProduct from "../components/section/FeaturedProduct";
-import { Hero } from "../components/section/Hero";
+import Hero from "../components/section/Hero";
 import Service from "../components/section/Service";
 import Testimonial from "../components/section/Testimonial";
 
