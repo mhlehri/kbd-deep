@@ -8,7 +8,7 @@ export default function Service() {
         <CardHeader>
           <Truck />
           <CardTitle>Free Shipping</CardTitle>
-          <CardDescription>On all orders over $100</CardDescription>
+          <CardDescription>On all orders over $200</CardDescription>
         </CardHeader>
       </Card>
       <Card>
