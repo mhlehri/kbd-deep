@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import ProductCard from "../components/card/ProductCard";
 import { Input } from "../components/ui/input";
 import {
@@ -30,7 +31,10 @@ export function SortBy() {
 }
 
 export default function Products() {
-  const { data, isLoading } = useGetProductsQuery();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const { data, isLoading } = useGetProductsQuery(null);
 
   return (
     <div>

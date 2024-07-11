@@ -6,9 +6,20 @@ export const baseApi = createApi({
   tagTypes: ["products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => `/products`,
+      query: () => ({
+        url: `/products`,
+        method: "GET",
+      }),
+      providesTags: [{ type: "products" }],
+    }),
+    getProductById: builder.query({
+      query: (id) => ({
+        url: `/products/${id}`,
+        method: "GET",
+      }),
+      providesTags: [{ type: "products" }],
     }),
   }),
 });
 
-export const { useGetProductsQuery } = baseApi;
+export const { useGetProductsQuery, useGetProductByIdQuery } = baseApi;

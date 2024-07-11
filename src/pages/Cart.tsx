@@ -4,11 +4,15 @@ import { Button } from "../components/ui/button";
 import { CartTable } from "../components/table/CartTable";
 import PricingDetails from "../components/card/PricingDetails";
 import Title from "../components/Title";
+import { useEffect } from "react";
 
 // TODO: Implement Cart functionality
 // TODO: Implement Clear Cart functionality
 
 export default function Cart() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const cart = true;
   return (
     <div className="my-10">
@@ -27,8 +31,8 @@ export default function Cart() {
                 <DollarSign /> Save More{" "}
               </Title>
               <p>Get free shipping on orders over $200.00</p>
-              <Button>
-                <a href="/products">Continue Shopping</a>
+              <Button asChild>
+                <Link to="/products">Continue Shopping</Link>
               </Button>
             </div>
             <PricingDetails />

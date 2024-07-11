@@ -19,34 +19,40 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { useEffect } from "react";
 
-const AboutUs = () => (
-  <div className="my-10">
-    <div>
-      <Title className="mb-4">
-        <Atom /> About Us
-      </Title>
-      <p className="text-zinc-600 mb-6">
-        At KBD DEEP, we are dedicated to elevating your typing experience with
-        our expertly crafted mechanical keyboards. Since our inception in 2018,
-        we have strived to merge cutting-edge technology with unmatched
-        customization options, creating products that not only perform
-        exceptionally but also reflect your personal style.
-      </p>
-      <p className="text-zinc-600">
-        Our team of passionate professionals is committed to quality,
-        innovation, and community. Join us on our mission to redefine what a
-        keyboard can be.
-      </p>
+const AboutUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  return (
+    <div className="my-10">
+      <div>
+        <Title className="mb-4">
+          <Atom /> About Us
+        </Title>
+        <p className="text-zinc-600 mb-6">
+          At KBD DEEP, we are dedicated to elevating your typing experience with
+          our expertly crafted mechanical keyboards. Since our inception in
+          2018, we have strived to merge cutting-edge technology with unmatched
+          customization options, creating products that not only perform
+          exceptionally but also reflect your personal style.
+        </p>
+        <p className="text-zinc-600">
+          Our team of passionate professionals is committed to quality,
+          innovation, and community. Join us on our mission to redefine what a
+          keyboard can be.
+        </p>
+      </div>
+      <OurStory />
+      <div className="flex justify-between gap-10 *:w-full my-12 md:flex-row flex-col">
+        <MileStones />
+        <WhatWeDo />
+      </div>
+      <OurTeam />
     </div>
-    <OurStory />
-    <div className="flex justify-between gap-10 *:w-full my-12 md:flex-row flex-col">
-      <MileStones />
-      <WhatWeDo />
-    </div>
-    <OurTeam />
-  </div>
-);
+  );
+};
 
 export default AboutUs;
 

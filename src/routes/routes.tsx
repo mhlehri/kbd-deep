@@ -7,6 +7,7 @@ import Checkout from "../pages/Checkout";
 import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
 import Dashboard from "../pages/Dashboard";
+import ProductDetails from "../pages/ProductDetails";
 
 export const router = createBrowserRouter([
   {
@@ -20,12 +21,15 @@ export const router = createBrowserRouter([
       {
         path: "products",
         element: <Products />,
-        children: [
-          {
-            path: ":productId",
-            element: <div>Hello productId</div>,
-          },
-        ],
+      },
+      {
+        path: "products/:productId",
+        loader: async ({ request, params }) => {
+          return fetch(`http:localhost:1000/api/products/${params.productId}`, {
+            signal: request.signal,
+          });
+        },
+        element: <ProductDetails />,
       },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },

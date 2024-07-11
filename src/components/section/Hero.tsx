@@ -74,7 +74,7 @@ export default function Hero() {
                     <p
                       className={`${
                         index === currentSlider ? "" : "-translate-y-12"
-                      } duration-500 ease-linear`}
+                      } duration-500 ease-linear text-white`}
                     >
                       {des}
                     </p>

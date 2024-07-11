@@ -30,24 +30,36 @@ export default function ProductTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {isLoading
-            ? "loading..."
-            : data.data.map((item: TProduct, i: number) => (
-                <TableRow key={item.name}>
-                  <TableCell className="font-medium">{i + 1}</TableCell>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.price}</TableCell>
-                  <TableCell>{item.brand}</TableCell>
-                  <TableCell className="flex gap-3 justify-end items-center">
-                    <Button variant="outline" className="text-blue-500">
-                      <Edit />
-                    </Button>
-                    <Button variant="outline" className="text-red-500">
-                      <Trash2 />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
+          {isLoading ? (
+            <TableRow>
+              <TableCell colSpan={5} className="text-center">
+                Loading...
+              </TableCell>
+            </TableRow>
+          ) : data.data.length ? (
+            data.data.map((item: TProduct, i: number) => (
+              <TableRow key={item.name}>
+                <TableCell className="font-medium">{i + 1}</TableCell>
+                <TableCell>{item.name}</TableCell>
+                <TableCell>{item.price}</TableCell>
+                <TableCell>{item.brand}</TableCell>
+                <TableCell className="flex gap-3 justify-end items-center">
+                  <Button variant="outline" className="text-blue-500">
+                    <Edit />
+                  </Button>
+                  <Button variant="outline" className="text-red-500">
+                    <Trash2 />
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={5} className="text-center">
+                No data available
+              </TableCell>
+            </TableRow>
+          )}
         </TableBody>
       </Table>
     </div>

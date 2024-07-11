@@ -9,8 +9,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/tabs";
+import { useEffect } from "react";
 
 export default function Dashboard() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="space-y-10">
       <div className="flex flex-wrap gap-10 items-center mt-10 justify-between">

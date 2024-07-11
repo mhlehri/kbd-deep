@@ -4,6 +4,7 @@ import Title from "../Title";
 import { useGetProductsQuery } from "../../redux/api";
 import { TProduct } from "../../type";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 export default function FeaturedProduct() {
   const { data, isLoading } = useGetProductsQuery();
@@ -29,8 +30,10 @@ export default function FeaturedProduct() {
           </div>
         )}
       </div>
-      <Button className="mx-auto flex">
-        See More Products <ChevronRight />
+      <Button className="mx-auto flex w-fit" asChild>
+        <Link to="/products">
+          See More Products <ChevronRight />
+        </Link>
       </Button>
     </section>
   );
