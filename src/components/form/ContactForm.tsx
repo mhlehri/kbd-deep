@@ -1,4 +1,4 @@
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Send } from "lucide-react";
 import Title from "../Title";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -50,7 +50,8 @@ export default function ContactForm() {
             className="w-full px-4 py-2 border border-gray-300 rounded-md"
           />
         </div>
-        <Button type="button" className="w-full">
+        <Button type="button" className="w-full flex gap-2">
+          <Send />
           Send
         </Button>
       </form>
