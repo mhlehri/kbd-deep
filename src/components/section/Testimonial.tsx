@@ -8,9 +8,7 @@ export default function Testimonial() {
       <Title>
         <MessageSquareQuote /> Our Happy Customers
       </Title>
-      <p className="mt-3 text-zinc-500">
-        Check out what our customers say about our product and service
-      </p>
+      <p>Check out what our customers say about our product and service</p>
       <TestimonialCarousel />
     </div>
   );

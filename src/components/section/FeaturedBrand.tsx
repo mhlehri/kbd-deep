@@ -7,9 +7,7 @@ export default function FeaturedBrand() {
       <Title className="mb-2">
         <AnchorIcon /> Our partners
       </Title>
-      <p className="text-zinc-500 text-balance">
-        Some of the brands we work with
-      </p>
+      <p>Some of the brands we work with</p>
       <div className="*:w-full my-10 *:max-w-40 border p-5 rounded flex justify-center gap-10 flex-wrap bg-zinc-100">
         <img
           src="/images/brands/Kinetic_Labs_logo.png"

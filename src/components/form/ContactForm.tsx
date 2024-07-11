@@ -9,7 +9,7 @@ export default function ContactForm() {
   return (
     <div>
       <form className="space-y-4 p-8 rounded-lg border max-w-md mx-auto">
-        <Title className="mb-2">
+        <Title>
           <MessageSquare /> Send us a message
         </Title>
         <p className="text-sm text-muted-foreground mb-5">

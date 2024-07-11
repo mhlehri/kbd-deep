@@ -11,7 +11,7 @@ export default function Title({
   return (
     <h1
       className={cn(
-        "flex items-center gap-2 text-3xl text-balance font-medium",
+        "flex items-center gap-2 text-3xl text-balance font-medium mb-2",
         className
       )}
     >

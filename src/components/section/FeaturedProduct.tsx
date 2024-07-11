@@ -11,9 +11,7 @@ export default function FeaturedProduct() {
       <Title className="mb-2">
         <Component /> Featured Keyboard
       </Title>
-      <p className="text-zinc-500 text-balance">
-        Check out our featured keyboard
-      </p>
+      <p>Check out our featured keyboard</p>
       <div className="flex gap-3 my-10">
         {productData.map((product, index) => (
           <ProductCard key={index} product={product} />

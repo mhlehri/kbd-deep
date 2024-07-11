@@ -14,21 +14,19 @@ export default function Cart() {
     <div className="my-10">
       {cart ? (
         <div className="space-y-10">
-          <Title className="flex items-center gap-3">
+          <Title>
             <ShoppingCart /> Shopping Cart
           </Title>
           <CartTable />
           <div className="flex justify-between items-center">
             <div className="space-y-2">
-              <Title className="flex items-center gap-2">
+              <Title>
                 <ShoppingBag /> Shop More
               </Title>
-              <Title className="flex items-center gap-2">
+              <Title>
                 <DollarSign /> Save More{" "}
               </Title>
-              <p className="text-zinc-600">
-                Get free shipping on orders over $200.00
-              </p>
+              <p>Get free shipping on orders over $200.00</p>
               <Button>
                 <a href="/products">Continue Shopping</a>
               </Button>
@@ -40,7 +38,7 @@ export default function Cart() {
         <div className="text-center flex flex-col justify-center items-center h-[80vh]">
           <ShoppingBag className="size-10" />
           <Title>Shopping Cart</Title>
-          <p className="text-zinc-600">Your cart is empty.</p>
+          <p>Your cart is empty.</p>
           <Link to="/products" className="mt-4">
             <Button>Continue Shopping</Button>
           </Link>
