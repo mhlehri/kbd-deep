@@ -1,5 +1,6 @@
 import { Edit, Trash2 } from "lucide-react";
 import { productData } from "../../dummy/products.dummy";
+import { Button } from "../ui/button";
 import {
   Table,
   TableBody,
@@ -9,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { Button } from "../ui/button";
 
 export default function ProductTable() {
   return (

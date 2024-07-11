@@ -15,6 +15,9 @@ import {
 import { Input } from "../../components/ui/input";
 import Title from "../Title";
 import { Textarea } from "../ui/textarea";
+import { useAppDispatch } from "../../redux/hook";
+import { addItem } from "../../redux/features/CartSlice";
+import { toast } from "../ui/use-toast";
 
 const formSchema = z.object({
   name: z
@@ -64,11 +67,18 @@ const formSchema = z.object({
 });
 
 export default function AddProductForm() {
+  const dispatch = useAppDispatch();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    await dispatch(addItem(values));
+    toast({
+      title: "New product added successfully",
+      variant: "success",
+    });
   }
 
   return (
