@@ -8,6 +8,7 @@ import {
   CardTitle,
 } from "../ui/card";
 import { Button } from "../ui/button";
+import { TProduct } from "../../type";
 
 const Rating = ({ rating }: { rating: number }) => {
   return (
@@ -29,22 +30,22 @@ const Rating = ({ rating }: { rating: number }) => {
   );
 };
 
-export default function ProductCard({ product }: { product: any }) {
-  const { title, brand, stock, price, rating, image } = product;
+export default function ProductCard({ product }: { product: TProduct }) {
+  const { name, brand, quantity, price, rating, image } = product;
   return (
     <Card className="min-w-fit">
       <CardHeader>
         <img
-          src="/images/140 Keys Ink Lotus Blossom Keycaps Set, OEM Profile Japanese Ink Keycaps, Keycap for Mechanical Keyboard, Double Shot PBT Keycaps Set.jpeg"
-          alt={title}
+          src={image}
+          alt={name}
           className="object-cover w-72 h-52 rounded-lg"
         />
       </CardHeader>
       <CardContent>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle>{name}</CardTitle>
         <CardDescription>{brand}</CardDescription>
         <div className="flex justify-between items-center">
-          <CardDescription>Stock: {stock}</CardDescription>
+          <CardDescription>Stock: {quantity}</CardDescription>
           <p>${price}</p>
         </div>
         <Rating rating={rating} />

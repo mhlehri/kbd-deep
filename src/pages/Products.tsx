@@ -9,7 +9,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { productData } from "../dummy/products.dummy";
+import { useGetProductsQuery } from "../redux/api";
+import { TProduct } from "../type";
 
 export function SortBy() {
   return (
@@ -29,6 +30,8 @@ export function SortBy() {
 }
 
 export default function Products() {
+  const { data, isLoading } = useGetProductsQuery();
+
   return (
     <div>
       <div className="my-10 flex justify-between">
@@ -40,11 +43,16 @@ export default function Products() {
         <SortBy />
       </div>
 
-      <div className="grid grid-cols-4 gap-3 my-10">
-        {productData.map((product, index) => (
-          <ProductCard key={index} product={product} />
-        ))}
-      </div>
+      {isLoading ? (
+        "loading..."
+      ) : (
+        <div className="grid grid-cols-4 gap-3 my-10">
+          {data.data &&
+            data.data.map((product: TProduct, index: number) => (
+              <ProductCard key={index} product={product} />
+            ))}
+        </div>
+      )}
     </div>
   );
 }

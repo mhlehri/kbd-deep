@@ -10,8 +10,11 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
+import { useGetProductsQuery } from "../../redux/api";
+import { TProduct } from "../../type";
 
 export default function ProductTable() {
+  const { data, isLoading } = useGetProductsQuery();
   return (
     <div>
       <Table className="rounded-lg overflow-hidden bg-zinc-50">
@@ -28,22 +31,24 @@ export default function ProductTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {productData.map((item, i) => (
-            <TableRow key={item.title}>
-              <TableCell className="font-medium">{i + 1}</TableCell>
-              <TableCell>{item.title}</TableCell>
-              <TableCell>{item.price}</TableCell>
-              <TableCell>{item.brand}</TableCell>
-              <TableCell className="flex gap-3 justify-end items-center">
-                <Button variant="outline" className="text-blue-500">
-                  <Edit />
-                </Button>
-                <Button variant="outline" className="text-red-500">
-                  <Trash2 />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
+          {isLoading
+            ? "loading..."
+            : data.data.map((item: TProduct, i: number) => (
+                <TableRow key={item.name}>
+                  <TableCell className="font-medium">{i + 1}</TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>{item.price}</TableCell>
+                  <TableCell>{item.brand}</TableCell>
+                  <TableCell className="flex gap-3 justify-end items-center">
+                    <Button variant="outline" className="text-blue-500">
+                      <Edit />
+                    </Button>
+                    <Button variant="outline" className="text-red-500">
+                      <Trash2 />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
         </TableBody>
       </Table>
     </div>
