@@ -1,5 +1,6 @@
 import { Edit, Trash2 } from "lucide-react";
-import { productData } from "../../dummy/products.dummy";
+import { useGetProductsQuery } from "../../redux/api";
+import { TProduct } from "../../type";
 import { Button } from "../ui/button";
 import {
   Table,
@@ -10,8 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import { useGetProductsQuery } from "../../redux/api";
-import { TProduct } from "../../type";
 
 export default function ProductTable() {
   const { data, isLoading } = useGetProductsQuery();
