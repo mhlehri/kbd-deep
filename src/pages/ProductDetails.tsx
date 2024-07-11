@@ -1,6 +1,7 @@
 import {
   ChevronRight,
   DollarSign,
+  FileSearchIcon,
   ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
@@ -11,6 +12,7 @@ import { Button } from "../components/ui/button";
 import { useGetProductByIdQuery } from "../redux/api";
 import { TProduct } from "../type";
 import Title from "../components/Title";
+import NotDataFound from "../components/NotDataFound";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -67,7 +69,7 @@ export default function ProductDetails() {
       ) : isLoading ? (
         <>loading...</>
       ) : (
-        <>Data not found</>
+        <NotDataFound />
       )}
     </div>
   );

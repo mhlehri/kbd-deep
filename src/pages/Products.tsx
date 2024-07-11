@@ -12,6 +12,10 @@ import {
 } from "../components/ui/select";
 import { useGetProductsQuery } from "../redux/api";
 import { TProduct } from "../type";
+import { ChevronRight, FileSearchIcon } from "lucide-react";
+import { Button } from "../components/ui/button";
+import { Link } from "react-router-dom";
+import NotDataFound from "../components/NotDataFound";
 
 export function SortBy() {
   return (
@@ -35,6 +39,7 @@ export default function Products() {
     window.scrollTo(0, 0);
   }, []);
   const { data, isLoading } = useGetProductsQuery(null);
+  console.log(data);
 
   return (
     <div>
@@ -49,13 +54,15 @@ export default function Products() {
 
       {isLoading ? (
         "loading..."
-      ) : (
+      ) : data?.data?.length ? (
         <div className="grid grid-cols-4 gap-3 my-10">
-          {data.data &&
-            data.data.map((product: TProduct, index: number) => (
+          {data?.data &&
+            data?.data.map((product: TProduct, index: number) => (
               <ProductCard key={index} product={product} />
             ))}
         </div>
+      ) : (
+        <NotDataFound />
       )}
     </div>
   );
