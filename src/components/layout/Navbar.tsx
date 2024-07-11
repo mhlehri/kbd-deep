@@ -1,4 +1,4 @@
-import { Keyboard, Menu, ShoppingBag } from "lucide-react";
+import { Keyboard, Menu, ShoppingCart } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
@@ -66,7 +66,7 @@ export default function Navbar() {
                     <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
                       0
                     </span>
-                    <ShoppingBag />
+                    <ShoppingCart />
                   </button>
                 </div>
               </SheetContent>
@@ -85,7 +85,7 @@ export default function Navbar() {
               <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
                 0
               </span>
-              <ShoppingBag />
+              <ShoppingCart />
             </Link>
           </div>
         </div>

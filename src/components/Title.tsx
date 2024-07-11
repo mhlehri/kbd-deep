@@ -9,7 +9,12 @@ export default function Title({
   className?: string;
 }) {
   return (
-    <h1 className={cn("text-3xl text-balance font-medium", className)}>
+    <h1
+      className={cn(
+        "flex items-center gap-2 text-3xl text-balance font-medium",
+        className
+      )}
+    >
       {children}
     </h1>
   );

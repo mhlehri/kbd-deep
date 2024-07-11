@@ -1,3 +1,4 @@
+import { SquareDashedKanban } from "lucide-react";
 import AddProductForm from "../components/form/AddProductForm";
 import ProductTable from "../components/table/ProductTable";
 import Title from "../components/Title";
@@ -13,7 +14,9 @@ export default function Dashboard() {
   return (
     <div className="space-y-10">
       <div className="flex flex-wrap gap-10 items-center mt-10 justify-between">
-        <Title>Dashboard</Title>
+        <Title>
+          <SquareDashedKanban /> Dashboard
+        </Title>
       </div>
       <Tabs defaultValue="all-products">
         <TabsList className="bg-transparent mb-5 border p-0">

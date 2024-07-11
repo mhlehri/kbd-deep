@@ -1,9 +1,12 @@
+import { AnchorIcon } from "lucide-react";
 import Title from "../Title";
 
 export default function FeaturedBrand() {
   return (
     <section>
-      <Title className="mb-2">Our partners</Title>
+      <Title className="mb-2">
+        <AnchorIcon /> Our partners
+      </Title>
       <p className="text-zinc-500 text-balance">
         Some of the brands we work with
       </p>

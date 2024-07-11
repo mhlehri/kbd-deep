@@ -5,6 +5,9 @@ import { CartTable } from "../components/table/CartTable";
 import PricingDetails from "../components/card/PricingDetails";
 import Title from "../components/Title";
 
+// TODO: Implement Cart functionality
+// TODO: Implement Clear Cart functionality
+
 export default function Cart() {
   const cart = true;
   return (
@@ -12,13 +15,13 @@ export default function Cart() {
       {cart ? (
         <div className="space-y-10">
           <Title className="flex items-center gap-3">
-            <ShoppingBag /> Shopping Cart
+            <ShoppingCart /> Shopping Cart
           </Title>
           <CartTable />
           <div className="flex justify-between items-center">
             <div className="space-y-2">
               <Title className="flex items-center gap-2">
-                <ShoppingCart /> Shop More
+                <ShoppingBag /> Shop More
               </Title>
               <Title className="flex items-center gap-2">
                 <DollarSign /> Save More{" "}

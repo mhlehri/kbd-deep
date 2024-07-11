@@ -1,12 +1,17 @@
+import { Contact } from "lucide-react";
 import ContactCard from "../components/card/ContactCard";
+import ContactForm from "../components/form/ContactForm";
 import Title from "../components/Title";
 import { contactCards } from "../const/contactCards.const";
 
 export default function ContactUs() {
   return (
     <div className="space-y-10 mt-10">
-      <Title>Contact Us</Title>
+      <Title>
+        <Contact /> Contact Us
+      </Title>
       <ContactCards />
+      <ContactForm />
     </div>
   );
 }
