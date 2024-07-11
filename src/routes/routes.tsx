@@ -23,11 +23,14 @@ export const router = createBrowserRouter([
         element: <Products />,
       },
       {
-        path: "products/:productId",
+        path: "products/:productSlug",
         loader: async ({ request, params }) => {
-          return fetch(`http:localhost:1000/api/products/${params.productId}`, {
-            signal: request.signal,
-          });
+          return fetch(
+            `http:localhost:1000/api/products/${params.productSlug}`,
+            {
+              signal: request.signal,
+            }
+          );
         },
         element: <ProductDetails />,
       },

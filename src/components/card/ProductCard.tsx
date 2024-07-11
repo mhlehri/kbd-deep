@@ -12,7 +12,7 @@ import { TProduct } from "../../type";
 import Rating from "../Rating";
 
 export default function ProductCard({ product }: { product: TProduct }) {
-  const { _id, name, brand, quantity, price, rating, image } = product;
+  const { slug, name, brand, quantity, price, rating, image } = product;
   return (
     <Card className="min-w-fit">
       <CardHeader>
@@ -32,7 +32,7 @@ export default function ProductCard({ product }: { product: TProduct }) {
         <Rating rating={rating} />
       </CardContent>
       <CardFooter>
-        <Link to={`/products/${_id}`} className="w-full">
+        <Link to={`/products/${slug}`} className="w-full">
           <Button variant="outline" className="w-full">
             View Details
           </Button>

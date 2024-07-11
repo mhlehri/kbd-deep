@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import ProductCard from "../components/card/ProductCard";
+import Loading from "../components/Loading";
+import NotDataFound from "../components/NotDataFound";
 import { Input } from "../components/ui/input";
 import {
   Select,
@@ -12,11 +14,6 @@ import {
 } from "../components/ui/select";
 import { useGetProductsQuery } from "../redux/api";
 import { TProduct } from "../type";
-import { ChevronRight, FileSearchIcon } from "lucide-react";
-import { Button } from "../components/ui/button";
-import { Link } from "react-router-dom";
-import NotDataFound from "../components/NotDataFound";
-import Loading from "../components/Loading";
 
 export function SortBy() {
   return (

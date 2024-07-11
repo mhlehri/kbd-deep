@@ -20,9 +20,9 @@ export default function ProductDetails() {
     window.scrollTo(0, 0);
   }, []);
 
-  const { productId } = useParams();
+  const { productId: productSlug } = useParams();
 
-  const { data, isLoading, isSuccess } = useGetProductByIdQuery(productId);
+  const { data, isLoading, isSuccess } = useGetProductByIdQuery(productSlug);
 
   const p = !isLoading && data?.success ? (data.data as TProduct) : null;
 
@@ -30,8 +30,9 @@ export default function ProductDetails() {
     <div>
       {!isLoading && isSuccess && p ? (
         <div>
-          <div className="flex mt-10">
-            products <ChevronRight /> {p.name.toLowerCase()}
+          <div className="flex mt-10 text-zinc-600">
+            products <ChevronRight />{" "}
+            <span className="text-zinc-950">{p.slug}</span>
           </div>
           <div className="flex mt-10 md:flex-row flex-col justify-center lg:p-5 lg:border border-b pb-4 lg:rounded-lg gap-10">
             <div className="w-full flex-1">
