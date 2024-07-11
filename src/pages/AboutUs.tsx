@@ -1,7 +1,9 @@
+import Title from "../components/Title";
+
 const AboutUs = () => (
   <div className="my-10">
     <div>
-      <h1 className="text-3xl font-semibold mb-4">About Us</h1>
+      <Title className="mb-4">About Us</Title>
       <p className="text-zinc-600 mb-6">
         At KBD DEEP, we are dedicated to elevating your typing experience with
         our expertly crafted mechanical keyboards. Since our inception in 2018,
@@ -29,7 +31,7 @@ export default AboutUs;
 const OurStory = () => {
   return (
     <section className="my-12">
-      <h2 className="text-3xl font-semibold mb-4">Our Story</h2>
+      <Title className="mb-4">Our Story</Title>
       <p className="text-zinc-600 mb-4">
         Welcome to KBD DEEP, where passion for mechanical keyboards meets
         innovation. Founded in 2018, KBD DEEP started with a simple idea: to
@@ -63,7 +65,7 @@ const OurStory = () => {
 const MileStones = () => {
   return (
     <section>
-      <h2 className="text-3xl font-semibold mb-4">Milestones</h2>
+      <Title className="mb-4">Milestones</Title>
       <ul className="list-disc list-inside text-gray-600">
         <li>
           2018: KBD DEEP founded with a mission to revolutionize mechanical
@@ -97,7 +99,7 @@ const MileStones = () => {
 
 const WhatWeDo = () => (
   <section>
-    <h2 className="text-3xl font-semibold mb-4">What We Do</h2>
+    <Title className="mb-4">What We Do</Title>
     <p className="text-gray-600 mb-4">
       At KBD DEEP, we specialize in creating high-quality, customizable
       mechanical keyboards that cater to a diverse range of users, from gamers
@@ -126,7 +128,7 @@ const WhatWeDo = () => (
 
 const OurTeam = () => (
   <section className="my-12">
-    <h2 className="text-3xl font-semibold mb-10">Our Team</h2>
+    <h2 className="text-3xl mb-10">Our Team</h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <div className="team-member text-center">
         <img

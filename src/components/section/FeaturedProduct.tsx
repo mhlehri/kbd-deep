@@ -1,14 +1,13 @@
 import { productData } from "../../dummy/products.dummy";
 import ProductCard from "../card/ProductCard";
+import Title from "../Title";
 
 import { Button } from "../ui/button";
 
 export default function FeaturedProduct() {
   return (
     <section>
-      <h1 className="text-3xl font-medium mb-2 text-balance">
-        Featured Keyboard
-      </h1>
+      <Title className="mb-2">Featured Keyboard</Title>
       <p className="text-zinc-500 text-balance">
         Check out our featured keyboard
       </p>

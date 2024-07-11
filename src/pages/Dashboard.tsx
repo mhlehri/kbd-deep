@@ -1,5 +1,6 @@
 import AddProductForm from "../components/form/AddProductForm";
 import ProductTable from "../components/table/ProductTable";
+import Title from "../components/Title";
 import { Button } from "../components/ui/button";
 import {
   Tabs,
@@ -12,7 +13,7 @@ export default function Dashboard() {
   return (
     <div className="space-y-10">
       <div className="flex flex-wrap gap-10 items-center mt-10 justify-between">
-        <h1 className="text-2xl  font-semibold">Dashboard</h1>
+        <Title>Dashboard</Title>
       </div>
       <Tabs defaultValue="all-products">
         <TabsList className="bg-transparent mb-5 border p-0">

@@ -1,7 +1,9 @@
+import Title from "../Title";
+
 export default function FeaturedBrand() {
   return (
     <section>
-      <h1 className="text-3xl font-medium mb-2 text-balance">Our partners</h1>
+      <Title className="mb-2">Our partners</Title>
       <p className="text-zinc-500 text-balance">
         Some of the brands we work with
       </p>

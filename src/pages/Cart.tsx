@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { CartTable } from "../components/table/CartTable";
 import PricingDetails from "../components/card/PricingDetails";
+import Title from "../components/Title";
 
 export default function Cart() {
   const cart = true;
@@ -10,18 +11,18 @@ export default function Cart() {
     <div className="my-10">
       {cart ? (
         <div className="space-y-10">
-          <h1 className="text-3xl flex items-center gap-3">
+          <Title className="flex items-center gap-3">
             <ShoppingBag /> Shopping Cart
-          </h1>
+          </Title>
           <CartTable />
           <div className="flex justify-between items-center">
             <div className="space-y-2">
-              <h1 className="text-3xl flex items-center gap-2">
+              <Title className="flex items-center gap-2">
                 <ShoppingCart /> Shop More
-              </h1>
-              <h1 className="text-3xl flex items-center gap-2">
+              </Title>
+              <Title className="flex items-center gap-2">
                 <DollarSign /> Save More{" "}
-              </h1>
+              </Title>
               <p className="text-zinc-600">
                 Get free shipping on orders over $200.00
               </p>
@@ -35,7 +36,7 @@ export default function Cart() {
       ) : (
         <div className="text-center flex flex-col justify-center items-center h-[80vh]">
           <ShoppingBag className="size-10" />
-          <h1 className="text-3xl">Shopping Cart</h1>
+          <Title>Shopping Cart</Title>
           <p className="text-zinc-600">Your cart is empty.</p>
           <Link to="/products" className="mt-4">
             <Button>Continue Shopping</Button>
