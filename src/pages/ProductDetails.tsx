@@ -13,6 +13,7 @@ import { useGetProductByIdQuery } from "../redux/api";
 import { TProduct } from "../type";
 import Title from "../components/Title";
 import NotDataFound from "../components/NotDataFound";
+import Loading from "../components/Loading";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -67,7 +68,7 @@ export default function ProductDetails() {
           </div>
         </div>
       ) : isLoading ? (
-        <>loading...</>
+        <Loading />
       ) : (
         <NotDataFound />
       )}

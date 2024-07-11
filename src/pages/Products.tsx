@@ -16,6 +16,7 @@ import { ChevronRight, FileSearchIcon } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Link } from "react-router-dom";
 import NotDataFound from "../components/NotDataFound";
+import Loading from "../components/Loading";
 
 export function SortBy() {
   return (
@@ -53,7 +54,7 @@ export default function Products() {
       </div>
 
       {isLoading ? (
-        "loading..."
+        <Loading />
       ) : data?.data?.length ? (
         <div className="grid grid-cols-4 gap-3 my-10">
           {data?.data &&

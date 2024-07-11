@@ -8,8 +8,8 @@ export default function NotDataFound() {
       <FileSearchIcon size={40} />
       <h4 className="text-3xl">Data not found</h4>
       <Button asChild className="w-fit flex">
-        <Link to="/products">
-          Continue Shopping <ChevronRight />
+        <Link to="/">
+          Back to Home <ChevronRight />
         </Link>
       </Button>
     </div>
