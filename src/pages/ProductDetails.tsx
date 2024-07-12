@@ -13,6 +13,9 @@ import Title from "../components/Title";
 import { Button } from "../components/ui/button";
 import { useGetProductByIdQuery } from "../redux/api";
 import { TProduct } from "../type";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { addItem } from "../redux/features/CartSlice";
+import { toast } from "../components/ui/use-toast";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -24,35 +27,72 @@ export default function ProductDetails() {
   const { data, isLoading, isSuccess } = useGetProductByIdQuery(productSlug);
 
   const p = !isLoading && data?.success ? (data.data as TProduct) : null;
+  const { slug, image, description, rating, brand, name, price, quantity } = p
+    ? p
+    : {
+        slug: "N/A",
+        image: "N/A",
+        description: "N/A",
+        rating: 0,
+        brand: "N/A",
+        name: "N/A",
+        price: 0,
+        quantity: 0,
+      };
+
+  const dispatch = useAppDispatch();
+  const cart = useAppSelector((state) => state.cart.items);
+  const AlreadyAdded = cart.filter((i) => i.slug === slug);
+
+  const AddToCartHandler = () => {
+    toast({
+      title: "successfully added to cart.",
+      variant: "success",
+      duration: 1000,
+    });
+    dispatch(
+      addItem({
+        name,
+        slug,
+        price,
+        quantity,
+      })
+    );
+  };
 
   return (
     <div>
-      {!isLoading && isSuccess && p ? (
+      {!isLoading && isSuccess && data ? (
         <div>
           <div className="flex mt-10 text-zinc-600">
             products <ChevronRight />{" "}
-            <span className="text-zinc-950">{p.slug}</span>
+            <span className="text-zinc-950">{slug}</span>
           </div>
           <div className="flex mt-10 md:flex-row flex-col justify-center lg:p-5 lg:border border-b pb-4 lg:rounded-lg gap-10">
             <div className="w-full flex-1">
               <img
-                src={p?.image}
-                alt=""
+                src={image}
+                alt={slug}
                 className="rounded-lg max-w-md md:max-w-full w-full object-cover md:h-96 max-h-96"
               />
             </div>
             <div className="space-y-5 flex-1">
-              <h1 className="text-3xl font-medium">{p.name}</h1>
-              <h3 className="text-2xl font-medium">${p.price}</h3>
+              <h1 className="text-3xl font-medium">{name}</h1>
+              <h3 className="text-2xl font-medium">${price}</h3>
               <hr />
-              <p>{p.description}</p>
-              <Rating rating={p.rating} />
-              <h6>Brand: {p.brand}</h6>
+              <p>{description}</p>
+              <Rating rating={rating} />
+              <h6>Brand: {brand}</h6>
               <h6 className="bg-zinc-100 text-sm inline-block p-1 rounded-lg">
-                Availablity: {p.quantity} in stock
+                Availablity: {quantity} in stock
               </h6>
-              <Button disabled={p.quantity <= 0} className="flex gap-2">
-                <ShoppingCart /> Add to Cart
+              <Button
+                onClick={AddToCartHandler}
+                disabled={quantity <= 0 || AlreadyAdded.length ? true : false}
+                className="flex gap-2"
+              >
+                <ShoppingCart />{" "}
+                {AlreadyAdded.length ? "Already Added" : "Add to Cart"}
               </Button>
             </div>
           </div>

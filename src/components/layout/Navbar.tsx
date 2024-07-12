@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import Container from "./container";
+import { useAppSelector } from "../../redux/hook";
 
 export function Logo() {
   return (
@@ -42,6 +43,7 @@ const NavMenu = ({ className }: { className?: string }) => {
 };
 
 export default function Navbar() {
+  const cart = useAppSelector((state) => state.cart.items);
   return (
     <nav className="backdrop-blur-lg text-zinc-600 sticky top-0 z-50 bg-white/70">
       <Container>
@@ -82,8 +84,8 @@ export default function Navbar() {
           </div>
           <div className="sm:flex gap-5 hidden">
             <Link to="/cart" className="relative">
-              <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
-                0
+              <span className="absolute -right-1 -top-2 bg-sky-100 text-sky-600 rounded-full p-1 text-xs leading-none">
+                {cart.length}
               </span>
               <ShoppingCart />
             </Link>

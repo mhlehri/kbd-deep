@@ -1,4 +1,3 @@
-import { productData } from "../../dummy/products.dummy";
 import { useAppSelector } from "../../redux/hook";
 import {
   Table,
