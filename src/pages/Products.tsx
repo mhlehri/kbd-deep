@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../components/card/ProductCard";
 import Loading from "../components/Loading";
 import NotDataFound from "../components/NotDataFound";
@@ -36,8 +36,13 @@ export default function Products() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const { data, isLoading } = useGetProductsQuery(null);
-  console.log(data);
+  const [dataArr, setDataArr] = useState([]);
+  const { data, isLoading, isSuccess } = useGetProductsQuery(null);
+  useEffect(() => {
+    if (isSuccess) {
+      setDataArr(data?.data);
+    }
+  }, [isSuccess, data]);
 
   return (
     <div>
@@ -52,10 +57,10 @@ export default function Products() {
 
       {isLoading ? (
         <Loading />
-      ) : data?.data?.length ? (
-        <div className="grid grid-cols-4 gap-3 my-10">
-          {data?.data &&
-            data?.data.map((product: TProduct, index: number) => (
+      ) : isSuccess ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">
+          {dataArr &&
+            dataArr.map((product: TProduct, index: number) => (
               <ProductCard key={index} product={product} />
             ))}
         </div>

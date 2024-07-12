@@ -8,7 +8,7 @@ import { Textarea } from "../ui/textarea";
 export default function ContactForm() {
   return (
     <div>
-      <form className="space-y-4 p-8 rounded-lg border max-w-md mx-auto">
+      <form className="space-y-4 p-4 sm:p-8 rounded-lg border max-w-md mx-auto">
         <Title>
           <MessageSquare /> Send us a message
         </Title>

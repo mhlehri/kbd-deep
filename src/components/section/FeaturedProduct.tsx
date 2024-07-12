@@ -8,7 +8,7 @@ import Title from "../Title";
 import { Button } from "../ui/button";
 
 export default function FeaturedProduct() {
-  const { data, isLoading } = useGetProductsQuery();
+  const { data, isLoading } = useGetProductsQuery(null);
 
   return (
     <section>
@@ -17,11 +17,11 @@ export default function FeaturedProduct() {
       </Title>
       <p>Check out our featured keyboard</p>
 
-      <div className="flex gap-3 my-10">
+      <div className="my-10">
         {isLoading ? (
           <Loading />
         ) : data.data.length ? (
-          <div className="grid mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 my-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">
             {data?.data &&
               data?.data
                 .slice(0, 6)

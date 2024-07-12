@@ -14,7 +14,7 @@ import Rating from "../Rating";
 export default function ProductCard({ product }: { product: TProduct }) {
   const { slug, name, brand, quantity, price, rating, image } = product;
   return (
-    <Card className="min-w-fit">
+    <Card className="max-w-80 mx-auto">
       <CardHeader>
         <img
           src={image}

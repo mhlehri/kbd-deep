@@ -10,7 +10,7 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div className="space-y-28 mb-20 overflow-hidden">
+    <div className="space-y-10 md:space-y-20 lg:space-y-28 mb-20">
       <Hero />
       <Service />
       <FeaturedProduct />

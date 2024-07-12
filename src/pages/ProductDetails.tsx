@@ -1,26 +1,25 @@
 import {
   ChevronRight,
   DollarSign,
-  FileSearchIcon,
   ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import Loading from "../components/Loading";
+import NotDataFound from "../components/NotDataFound";
 import Rating from "../components/Rating";
+import Title from "../components/Title";
 import { Button } from "../components/ui/button";
 import { useGetProductByIdQuery } from "../redux/api";
 import { TProduct } from "../type";
-import Title from "../components/Title";
-import NotDataFound from "../components/NotDataFound";
-import Loading from "../components/Loading";
 
 export default function ProductDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const { productId: productSlug } = useParams();
+  const { productSlug } = useParams();
 
   const { data, isLoading, isSuccess } = useGetProductByIdQuery(productSlug);
 

@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 
 export default function Service() {
   return (
-    <section className="flex gap-5 flex-wrap md:justify-normal justify-center">
+    <section className="flex gap-2 sm:gap-5 flex-wrap sm:justify-normal justify-center">
       <Card>
         <CardHeader>
           <Truck />
