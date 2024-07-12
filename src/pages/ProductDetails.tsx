@@ -11,11 +11,11 @@ import NotDataFound from "../components/NotDataFound";
 import Rating from "../components/Rating";
 import Title from "../components/Title";
 import { Button } from "../components/ui/button";
-import { useGetProductByIdQuery } from "../redux/api";
 import { TProduct } from "../type";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { addItem } from "../redux/features/CartSlice";
 import { toast } from "../components/ui/use-toast";
+import { useGetProductBySlugQuery } from "../redux/api";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function ProductDetails() {
 
   const { productSlug } = useParams();
 
-  const { data, isLoading, isSuccess } = useGetProductByIdQuery(productSlug);
+  const { data, isLoading, isSuccess } = useGetProductBySlugQuery(productSlug);
 
   const p = !isLoading && data?.success ? (data.data as TProduct) : null;
   const { slug, image, description, rating, brand, name, price, quantity } = p
@@ -55,6 +55,7 @@ export default function ProductDetails() {
         name,
         slug,
         price,
+        stock: quantity,
         quantity: 1,
       })
     );

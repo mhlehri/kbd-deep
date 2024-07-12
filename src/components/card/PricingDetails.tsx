@@ -42,7 +42,7 @@ export default function PricingDetails() {
           <p>${total}</p>
         </div>
       </CardContent>
-      {pathname.includes("cart") && cart.length < 0 && (
+      {pathname.includes("cart") && cart.length > 0 && total > 0 && (
         <CardFooter>
           <Button
             className="w-full bg-zinc-500 text-white py-3 rounded-md"

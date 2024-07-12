@@ -1,43 +1,60 @@
 import { useState } from "react";
+import { changeQty } from "../../redux/features/CartSlice";
+import { useAppDispatch } from "../../redux/hook";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { useAppDispatch } from "../../redux/hook";
-import { increaseQty } from "../../redux/features/CartSlice";
 
 export default function Qty({
   slug,
   quantity,
+  stock,
 }: {
   slug: string;
   quantity: number;
+  stock: number;
 }) {
   const [qty, setQty] = useState(quantity);
   const dispatch = useAppDispatch();
   return (
     <div className="flex">
       <Button
-        onClick={() =>
-          setQty((prevQty) => (prevQty > 1 ? prevQty - 1 : prevQty))
-        }
-        disabled={qty === 1}
+        onClick={() => {
+          setQty((prevQty) => (prevQty > 1 ? prevQty - 1 : prevQty));
+          dispatch(changeQty({ slug, quantity: qty - 1 }));
+        }}
+        disabled={qty === 1 || qty > stock}
         variant="outline"
       >
         -
       </Button>
       <Input
         type="number"
-        onChange={(e) => setQty(e.target.value ? parseInt(e.target.value) : 1)}
-        defaultValue={qty}
+        onChange={(e) => {
+          const v =
+            e.target.value == ""
+              ? 0
+              : parseInt(e.target.value) <= stock
+              ? parseInt(e.target.value)
+              : qty;
+          setQty(v);
+          dispatch(
+            changeQty({
+              slug,
+              quantity: v,
+            })
+          );
+        }}
+        onBlur={() => setQty(qty ? qty : 1)}
         value={qty}
-        max={10}
+        min={1}
+        max={stock}
         className="w-20 outline-none invalid:border-red-700 invalid:bg-red-100 focus-visible:ring-offset-0 focus-visible:ring-0 text-center"
       />
       <Button
-        disabled={qty === 10}
+        disabled={qty >= stock}
         onClick={() => {
-          setQty((prevQty) => (prevQty < 10 ? prevQty + 1 : prevQty));
-          console.log(qty);
-          dispatch(increaseQty({ slug }));
+          setQty((prevQty) => (prevQty < stock ? prevQty + 1 : prevQty));
+          dispatch(changeQty({ slug, quantity: qty + 1 }));
         }}
         variant="outline"
       >

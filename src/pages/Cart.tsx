@@ -6,19 +6,7 @@ import PricingDetails from "../components/card/PricingDetails";
 import Title from "../components/Title";
 import { useEffect } from "react";
 
-// TODO: Implement Cart functionality
-// TODO: Implement Clear Cart functionality
-
 export default function Cart() {
-  window.addEventListener("beforeunload", function (event) {
-    // Set a custom message. Note: Most modern browsers will not display this message.
-    const message =
-      "Are you sure you want to leave? Your changes may not be saved.";
-    // For most browsers
-    event.returnValue = message;
-    // For some older browsers
-    return message;
-  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

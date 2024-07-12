@@ -12,9 +12,9 @@ export const baseApi = createApi({
       }),
       providesTags: [{ type: "products" }],
     }),
-    getProductById: builder.query({
-      query: (id) => ({
-        url: `/products/${id}`,
+    getProductBySlug: builder.query({
+      query: (slug) => ({
+        url: `/products/${slug}`,
         method: "GET",
       }),
       providesTags: [{ type: "products" }],
@@ -22,4 +22,4 @@ export const baseApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = baseApi;
+export const { useGetProductsQuery, useGetProductBySlugQuery } = baseApi;

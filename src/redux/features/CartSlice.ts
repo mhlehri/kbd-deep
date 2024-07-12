@@ -12,6 +12,7 @@ type TCartItem = {
   slug?: string;
   name: string;
   price: number;
+  stock: number;
   quantity: number;
 };
 
@@ -30,17 +31,18 @@ const CartSlice = createSlice({
     removeItem: (state, action) => {
       state.items = state.items.filter((item) => item.slug !== action.payload);
     },
-    increaseQty: (state, action) => {
+
+    changeQty: (state, action) => {
       state.items = state.items.map((item) => {
         const s = action.payload.slug;
         return s === item.slug
-          ? { ...item, quantity: item.quantity + 1 }
+          ? { ...item, quantity: action.payload.quantity }
           : item;
       });
     },
   },
 });
 
-export const { addItem, removeItem, increaseQty } = CartSlice.actions;
+export const { addItem, removeItem, changeQty } = CartSlice.actions;
 
 export default CartSlice.reducer;
