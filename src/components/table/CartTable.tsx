@@ -1,4 +1,5 @@
 import { productData } from "../../dummy/products.dummy";
+import { useAppSelector } from "../../redux/hook";
 import {
   Table,
   TableBody,
@@ -10,6 +11,7 @@ import {
 import Qty from "./Qty";
 
 export function CartTable() {
+  const cart = useAppSelector((state) => state.cart.items);
   return (
     <Table className="rounded-lg overflow-hidden bg-zinc-50">
       <TableHeader>
@@ -22,17 +24,25 @@ export function CartTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {productData.map((item, i) => (
-          <TableRow key={item.title}>
-            <TableCell className="font-medium">{i + 1}</TableCell>
-            <TableCell>{item.title}</TableCell>
-            <TableCell>{item.price}</TableCell>
-            <TableCell>
-              <Qty quantity={1} />
+        {cart.length ? (
+          cart.map((item, i) => (
+            <TableRow key={item.slug}>
+              <TableCell className="font-medium">{i + 1}</TableCell>
+              <TableCell>{item.name}</TableCell>
+              <TableCell>{item.price}</TableCell>
+              <TableCell>
+                <Qty quantity={1} />
+              </TableCell>
+              <TableCell className="text-right">{300}</TableCell>
+            </TableRow>
+          ))
+        ) : (
+          <TableRow>
+            <TableCell className="text-center" colSpan={5}>
+              No Cart added Yet
             </TableCell>
-            <TableCell className="text-right">{300}</TableCell>
           </TableRow>
-        ))}
+        )}
       </TableBody>
     </Table>
   );

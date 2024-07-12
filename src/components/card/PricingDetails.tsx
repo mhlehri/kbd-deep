@@ -7,10 +7,17 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useAppSelector } from "../../redux/hook";
 
 export default function PricingDetails() {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const cart = useAppSelector((state) => state.cart.items);
+  const subTotal = cart.reduce((acc, item) => {
+    return (acc += item.price);
+  }, 0);
+  const shippingCost = subTotal > 200 ? 0 : subTotal ? 40 : 0;
+  const tax = subTotal ? 2 : 0;
+  const total = subTotal + shippingCost + tax;
   return (
     <Card className="w-full max-w-sm">
       <CardHeader>
@@ -19,23 +26,23 @@ export default function PricingDetails() {
       <CardContent className="space-y-3">
         <div className="flex justify-between">
           <h1>Subtotal</h1>
-          <p>$200</p>
+          <p>${subTotal}</p>
         </div>
         <div className="flex justify-between">
           <p>Shipping</p>
-          <p>$0</p>
+          <p>${shippingCost}</p>
         </div>
         <div className="flex justify-between">
           <p>Tax</p>
-          <p>$0</p>
+          <p>${tax}</p>
         </div>
         <hr />
         <div className="flex justify-between">
           <p>Total</p>
-          <p>$230</p>
+          <p>${total}</p>
         </div>
       </CardContent>
-      {pathname.includes("cart") && (
+      {pathname.includes("cart") && cart.length < 0 && (
         <CardFooter>
           <Button
             className="w-full bg-zinc-500 text-white py-3 rounded-md"

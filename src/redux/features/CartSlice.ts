@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type TinitialState = {
+type TInitialState = {
   items: TCartItem[];
 };
 
-const initialState: TinitialState = {
+const initialState: TInitialState = {
   items: [],
 };
 
 type TCartItem = {
-  id?: string;
-  title: string;
+  slug?: string;
+  name: string;
   price: number;
   quantity: number;
 };
@@ -23,7 +23,7 @@ const CartSlice = createSlice({
       state.items.push(action.payload);
     },
     removeItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => item.slug !== action.payload);
     },
   },
 });

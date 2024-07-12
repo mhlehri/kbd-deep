@@ -94,7 +94,7 @@ export default function TestimonialCarousel() {
 
   const isSmallScreen = window.innerWidth <= 768;
   return (
-    <div className="max-w-full min-w-[300px] h-[400px] flex flex-row items-center overflow-hidden gap-5 lg:gap-10 my-10">
+    <div className="max-w-full min-w-[300px] h-[400px] flex flex-row items-center overflow-hidden gap-5 lg:gap-10">
       <div className="relative overflow-hidden">
         <div className="absolute w-full h-full flex items-center justify-between z-50">
           <button
