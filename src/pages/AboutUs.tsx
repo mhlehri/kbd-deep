@@ -8,8 +8,8 @@ import {
   TimerReset,
   Twitch,
   Users2,
-  X,
 } from "lucide-react";
+import { useEffect } from "react";
 import Title from "../components/Title";
 import {
   Card,
@@ -19,7 +19,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { useEffect } from "react";
 
 const AboutUs = () => {
   useEffect(() => {

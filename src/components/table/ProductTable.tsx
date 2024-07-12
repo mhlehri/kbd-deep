@@ -1,5 +1,5 @@
 import { Edit, Trash2 } from "lucide-react";
-import { useGetProductsQuery } from "../../redux/api";
+import { useGetProductsQuery, useRemoveProductMutation } from "../../redux/api";
 import { TProduct } from "../../type";
 import { Button } from "../ui/button";
 import {
@@ -21,9 +21,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { toast } from "../ui/use-toast";
 
 export default function ProductTable() {
   const { data, isLoading } = useGetProductsQuery(null);
+  const [removeProduct] = useRemoveProductMutation();
   return (
     <div>
       <Table className="rounded-lg overflow-hidden bg-zinc-50">
@@ -60,11 +62,7 @@ export default function ProductTable() {
 
                   <Dialog>
                     <DialogTrigger asChild>
-                      <Button
-                        onClick={() => {}}
-                        variant="outline"
-                        className="text-red-500"
-                      >
+                      <Button variant="outline" className="text-red-500">
                         <Trash2 />
                       </Button>
                     </DialogTrigger>
@@ -81,7 +79,20 @@ export default function ProductTable() {
                           <Button variant="outline">Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                          <Button variant="destructive">Sure</Button>
+                          <Button
+                            onClick={async () => {
+                              const res = await removeProduct(item._id);
+                              toast({
+                                title: `${res.data.message} || something went wrong`,
+                                variant: `${
+                                  res.data.success ? "success" : "destructive"
+                                }`,
+                              });
+                            }}
+                            variant="destructive"
+                          >
+                            Sure
+                          </Button>
                         </DialogClose>
                       </DialogFooter>
                     </DialogContent>

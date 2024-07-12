@@ -1,7 +1,6 @@
-import React from "react";
-import { Logo } from "./Navbar";
 import { Link } from "react-router-dom";
 import Container from "./container";
+import { Logo } from "./Navbar";
 
 export default function Footer() {
   return (
