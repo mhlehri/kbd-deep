@@ -13,11 +13,10 @@ import {
   FormMessage,
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
-import { useAppDispatch } from "../../redux/hook";
+import { useAddProductMutation } from "../../redux/api";
 import Title from "../Title";
 import { Textarea } from "../ui/textarea";
 import { toast } from "../ui/use-toast";
-import { useAddProductMutation } from "../../redux/api";
 
 const formSchema = z.object({
   name: z
