@@ -1,9 +1,18 @@
 import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { useAppDispatch } from "../../redux/hook";
+import { increaseQty } from "../../redux/features/CartSlice";
 
-export default function Qty({ quantity }: { quantity: number }) {
+export default function Qty({
+  slug,
+  quantity,
+}: {
+  slug: string;
+  quantity: number;
+}) {
   const [qty, setQty] = useState(quantity);
+  const dispatch = useAppDispatch();
   return (
     <div className="flex">
       <Button
@@ -25,9 +34,11 @@ export default function Qty({ quantity }: { quantity: number }) {
       />
       <Button
         disabled={qty === 10}
-        onClick={() =>
-          setQty((prevQty) => (prevQty < 10 ? prevQty + 1 : prevQty))
-        }
+        onClick={() => {
+          setQty((prevQty) => (prevQty < 10 ? prevQty + 1 : prevQty));
+          console.log(qty);
+          dispatch(increaseQty({ slug }));
+        }}
         variant="outline"
       >
         +

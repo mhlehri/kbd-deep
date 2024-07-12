@@ -55,7 +55,7 @@ export default function ProductDetails() {
         name,
         slug,
         price,
-        quantity,
+        quantity: 1,
       })
     );
   };

@@ -13,7 +13,7 @@ export default function PricingDetails() {
   const { pathname } = useLocation();
   const cart = useAppSelector((state) => state.cart.items);
   const subTotal = cart.reduce((acc, item) => {
-    return (acc += item.price);
+    return (acc += item.price * item.quantity);
   }, 0);
   const shippingCost = subTotal > 200 ? 0 : subTotal ? 40 : 0;
   const tax = subTotal ? 2 : 0;

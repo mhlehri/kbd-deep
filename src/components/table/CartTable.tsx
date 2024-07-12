@@ -30,9 +30,11 @@ export function CartTable() {
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.price}</TableCell>
               <TableCell>
-                <Qty quantity={1} />
+                <Qty slug={item.slug!} quantity={1} />
               </TableCell>
-              <TableCell className="text-right">{300}</TableCell>
+              <TableCell className="text-right">
+                {item.price * item.quantity}
+              </TableCell>
             </TableRow>
           ))
         ) : (
