@@ -1,5 +1,7 @@
-import { Edit, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import { removeItem } from "../../redux/features/CartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { Button } from "../ui/button";
 import {
   Table,
   TableBody,
@@ -9,8 +11,6 @@ import {
   TableRow,
 } from "../ui/table";
 import Qty from "./Qty";
-import { Button } from "../ui/button";
-import { removeItem } from "../../redux/features/CartSlice";
 
 export function CartTable() {
   const cart = useAppSelector((state) => state.cart.items);

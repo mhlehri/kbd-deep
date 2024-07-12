@@ -13,7 +13,7 @@ import {
 } from "../ui/table";
 
 export default function ProductTable() {
-  const { data, isLoading } = useGetProductsQuery();
+  const { data, isLoading } = useGetProductsQuery(null);
   return (
     <div>
       <Table className="rounded-lg overflow-hidden bg-zinc-50">
@@ -36,8 +36,8 @@ export default function ProductTable() {
                 Loading...
               </TableCell>
             </TableRow>
-          ) : data.data.length ? (
-            data.data.map((item: TProduct, i: number) => (
+          ) : data?.data.length ? (
+            data?.data.map((item: TProduct, i: number) => (
               <TableRow key={item.name}>
                 <TableCell className="font-medium">{i + 1}</TableCell>
                 <TableCell>{item.name}</TableCell>

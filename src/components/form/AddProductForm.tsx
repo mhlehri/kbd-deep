@@ -13,11 +13,11 @@ import {
   FormMessage,
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
+import { useAppDispatch } from "../../redux/hook";
 import Title from "../Title";
 import { Textarea } from "../ui/textarea";
-import { useAppDispatch } from "../../redux/hook";
-import { addItem } from "../../redux/features/CartSlice";
 import { toast } from "../ui/use-toast";
+import { useAddProductMutation } from "../../redux/api";
 
 const formSchema = z.object({
   name: z
@@ -26,6 +26,13 @@ const formSchema = z.object({
     })
     .min(2, {
       message: "Product name must be at least 2 characters.",
+    }),
+  brand: z
+    .string({
+      required_error: "Brand name is required.",
+    })
+    .min(2, {
+      message: "Brand name must be at least 2 characters.",
     }),
   price: z
     .string({
@@ -67,17 +74,18 @@ const formSchema = z.object({
 });
 
 export default function AddProductForm() {
-  const dispatch = useAppDispatch();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
+
+  const [addProduct, { isLoading }] = useAddProductMutation();
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    await dispatch(addItem(values));
+    const slug = values.name.replace(/\s/g, "-").toLowerCase();
+    const res = await addProduct({ slug, ...values });
     toast({
-      title: "New product added successfully",
-      variant: "success",
+      title: `${res.data.message}`,
+      variant: `${res.data.success ? "success" : "destructive"}`,
+      duration: 1000,
     });
   }
 
@@ -135,6 +143,19 @@ export default function AddProductForm() {
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Textarea placeholder="product description" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="brand"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Brand</FormLabel>
+              <FormControl>
+                <Input placeholder="brand name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -198,11 +219,12 @@ export default function AddProductForm() {
             form.formState.isSubmitting ||
             form.formState.isValidating ||
             !form.formState.isDirty ||
-            !form.formState.isValid
+            !form.formState.isValid ||
+            isLoading
           }
           type="submit"
         >
-          Submit
+          {isLoading ? "Submitting.." : "Submit"}
         </Button>
       </form>
     </Form>

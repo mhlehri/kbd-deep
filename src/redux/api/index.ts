@@ -19,7 +19,20 @@ export const baseApi = createApi({
       }),
       providesTags: [{ type: "products" }],
     }),
+    addProduct: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/products",
+          method: "POST",
+          body,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetProductsQuery, useGetProductBySlugQuery } = baseApi;
+export const {
+  useGetProductsQuery,
+  useGetProductBySlugQuery,
+  useAddProductMutation,
+} = baseApi;
