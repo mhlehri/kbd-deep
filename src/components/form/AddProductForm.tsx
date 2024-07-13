@@ -124,6 +124,7 @@ export default function AddProductForm() {
                 <FormControl>
                   <Input
                     min={1}
+                    max={3000}
                     type="number"
                     placeholder="product price"
                     {...field}

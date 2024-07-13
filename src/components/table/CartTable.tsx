@@ -28,6 +28,7 @@ export function CartTable() {
   const cart = useAppSelector((state) => state.cart.items);
   const dispatch = useAppDispatch();
   const [open, setOpen] = useState(false);
+  const [qty, setQty] = useState(1);
 
   return (
     <Table className="rounded-lg overflow-hidden bg-zinc-50">
@@ -53,6 +54,8 @@ export function CartTable() {
                   <TableCell>{item.price}</TableCell>
                   <TableCell>
                     <Qty
+                      qty={qty}
+                      setQty={setQty}
                       slug={item.slug!}
                       quantity={item.quantity}
                       stock={item.stock}

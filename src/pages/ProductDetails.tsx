@@ -4,7 +4,7 @@ import {
   ShoppingBag,
   ShoppingCart,
 } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "sonner";
 import Loading from "../components/Loading";
@@ -44,7 +44,7 @@ export default function ProductDetails() {
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.items);
   const AlreadyAdded = cart.find((i) => i.slug === slug);
-  console.log(AlreadyAdded);
+  const [qty, setQty] = useState(1);
 
   const AddToCartHandler = () => {
     toast.success("successfully added to cart.");
@@ -54,7 +54,7 @@ export default function ProductDetails() {
         slug,
         price,
         stock: quantity,
-        quantity: 1,
+        quantity: qty,
       })
     );
   };
@@ -86,8 +86,10 @@ export default function ProductDetails() {
                 Availablity: {quantity} in stock
               </h6>
               <Qty
+                qty={qty}
+                setQty={setQty}
                 slug={slug}
-                quantity={AlreadyAdded?.quantity || 1}
+                quantity={AlreadyAdded?.quantity || qty}
                 stock={quantity}
               />
               <Button

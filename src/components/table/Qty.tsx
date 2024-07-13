@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { changeQty } from "../../redux/features/CartSlice";
 import { useAppDispatch } from "../../redux/hook";
 import { Button } from "../ui/button";
@@ -8,12 +8,18 @@ export default function Qty({
   slug,
   quantity,
   stock,
+  qty,
+  setQty,
 }: {
   slug: string;
   quantity: number;
   stock: number;
+  qty: number;
+  setQty: React.Dispatch<React.SetStateAction<number>>;
 }) {
-  const [qty, setQty] = useState(quantity);
+  useEffect(() => {
+    setQty(quantity);
+  }, [quantity, setQty]);
 
   const dispatch = useAppDispatch();
   return (
@@ -23,7 +29,7 @@ export default function Qty({
           setQty((prevQty) => (prevQty > 1 ? prevQty - 1 : prevQty));
           dispatch(changeQty({ slug, quantity: qty - 1 }));
         }}
-        disabled={qty === 1 || qty > stock}
+        disabled={quantity === 1 || quantity > stock}
         variant="outline"
       >
         -
