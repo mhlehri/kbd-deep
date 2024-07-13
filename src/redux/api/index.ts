@@ -6,14 +6,25 @@ export const baseApi = createApi({
     baseUrl: "https://kbd-deep-server.vercel.app/api",
   }),
   tagTypes: ["products"],
+
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
-        url: `/products`,
-        method: "GET",
-      }),
+      query: (search) => {
+        const params = new URLSearchParams();
+
+        if (search) {
+          params.append("search", search);
+        }
+
+        return {
+          url: `/products`,
+          method: "GET",
+          params,
+        };
+      },
       providesTags: [{ type: "products" }],
     }),
+
     getProductBySlug: builder.query({
       query: (slug) => ({
         url: `/products/${slug}`,
@@ -21,6 +32,7 @@ export const baseApi = createApi({
       }),
       providesTags: [{ type: "products" }],
     }),
+
     addProduct: builder.mutation({
       query: (body) => {
         return {
@@ -31,6 +43,7 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["products"],
     }),
+
     removeProduct: builder.mutation({
       query: (id) => {
         return {
@@ -40,6 +53,7 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["products"],
     }),
+
     updateProduct: builder.mutation({
       query: ({ _id, ...body }) => {
         return {

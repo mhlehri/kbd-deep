@@ -14,6 +14,8 @@ import {
 } from "../components/ui/select";
 import { useGetProductsQuery } from "../redux/api";
 import { TProduct } from "../type";
+import { Search } from "lucide-react";
+import useDebounce from "../hooks/useDebounce";
 
 export function SortBy() {
   return (
@@ -36,33 +38,41 @@ export default function Products() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const [dataArr, setDataArr] = useState([]);
-  const { data, isLoading, isSuccess } = useGetProductsQuery(null);
+
+  const [search, setSearch] = useState("");
+  // const [dataArr, setDataArr] = useState([]);
+
+  const debounceValue = useDebounce(search);
+  const { data, isFetching, isSuccess } = useGetProductsQuery(debounceValue);
+
   useEffect(() => {
-    if (isSuccess) {
-      setDataArr(data?.data);
-    }
-  }, [isSuccess, data]);
+    console.log(isFetching);
+  }, [debounceValue, isFetching]);
 
   return (
     <div>
-      <div className="my-10 flex justify-between">
-        <Input
-          type="search"
-          className="w-fit"
-          placeholder="search by name or brand"
-        />
+      <div className="my-10 flex justify-between flex-wrap">
+        <div className="flex w-full max-w-sm items-center space-x-2">
+          <Input
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+            type="search"
+            className="pl-10"
+            placeholder="search by name, brand"
+          />
+          <Search className="text-xs text-zinc-500 absolute" />
+        </div>
         <SortBy />
       </div>
 
-      {isLoading ? (
+      {isFetching ? (
         <Loading />
-      ) : isSuccess ? (
+      ) : isSuccess && data?.data.length ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">
-          {dataArr &&
-            dataArr.map((product: TProduct, index: number) => (
-              <ProductCard key={index} product={product} />
-            ))}
+          {data?.data?.map((product: TProduct, index: number) => (
+            <ProductCard key={index} product={product} />
+          ))}
         </div>
       ) : (
         <NotDataFound />
