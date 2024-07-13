@@ -1,5 +1,5 @@
 import { Trash2 } from "lucide-react";
-import { removeItem } from "../../redux/features/CartSlice";
+import { removeItem, resetItem } from "../../redux/features/CartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { Button } from "../ui/button";
 import {
@@ -93,7 +93,13 @@ export function CartTable() {
                       <DialogClose asChild>
                         <Button>Cancel</Button>
                       </DialogClose>
-                      <Button variant="destructive" onClick={() => {}}>
+                      <Button
+                        variant="destructive"
+                        onClick={() => {
+                          dispatch(resetItem());
+                          toast.success("Cart reset successfully!");
+                        }}
+                      >
                         Sure
                       </Button>
                     </DialogFooter>
