@@ -20,7 +20,7 @@ export default function FeaturedProduct() {
       <div className="my-10">
         {isLoading ? (
           <Loading />
-        ) : data?.data.length ? (
+        ) : data?.data?.length ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">
             {data?.data &&
               data?.data

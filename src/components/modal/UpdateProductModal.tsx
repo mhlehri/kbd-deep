@@ -114,7 +114,7 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
               required
               type="number"
               min={1}
-              max={3000}
+              max={1000}
               id="price"
               name="price"
               defaultValue={price}

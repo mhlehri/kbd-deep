@@ -51,11 +51,13 @@ export function SortBy({
 export default function Products() {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
-  const [sliderValues, setSliderValues] = useState([1, 3000]);
+  const [sliderValues, setSliderValues] = useState<number[] | []>([]);
   const debounceValue = useDebounce(search);
   const { data, isFetching, isLoading, isSuccess } = useGetProductsQuery({
     search: debounceValue,
     sort,
+    min: sliderValues?.length && sliderValues[0],
+    max: sliderValues?.length && sliderValues[1],
   });
 
   useEffect(() => {
@@ -85,14 +87,16 @@ export default function Products() {
               <Slider
                 range
                 min={1}
-                max={3000}
-                defaultValue={sliderValues}
+                max={1000}
+                defaultValue={[1, 1000]}
+                value={sliderValues?.length ? sliderValues : [1, 1000]}
                 onChange={(values) => {
                   setSliderValues(values as number[]);
                 }}
               />
               <p className="text-sm">
-                Selected range: {sliderValues[0]} to {sliderValues[1]}
+                Selected range: {sliderValues[0] || 1} to{" "}
+                {sliderValues[1] || 1000}
               </p>
             </div>
           </div>
@@ -100,7 +104,7 @@ export default function Products() {
             <SortBy sort={sort} setSort={setSort} />
             <Button
               onClick={() => {
-                setSliderValues([1, 3000]);
+                setSliderValues([1, 1000]);
                 setSearch("");
                 setSort("");
               }}
@@ -116,7 +120,7 @@ export default function Products() {
           <Loading />
         ) : debounceValue && isFetching ? (
           <Loading />
-        ) : isSuccess && data?.data.length ? (
+        ) : isSuccess && data?.data?.length ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-3 justify-center gap-5">
             {data?.data?.map((product: TProduct, index: number) => (
               <ProductCard key={index} product={product} />

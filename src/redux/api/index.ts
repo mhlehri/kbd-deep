@@ -17,6 +17,13 @@ export const baseApi = createApi({
         if (query?.sort) {
           params.append("sort", query.sort);
         }
+        if (query?.min) {
+          params.append("min", query.min);
+        }
+        console.log(query?.min);
+        if (query?.max) {
+          params.append("max", query.max);
+        }
         return {
           url: `/products`,
           method: "GET",
