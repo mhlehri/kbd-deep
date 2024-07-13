@@ -13,16 +13,18 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import { useUpdateProductMutation } from "../../redux/api";
 
 export default function UpdateProductModal({ item }: { item: TProduct }) {
   const { _id, brand, description, image, name, price, quantity, rating } =
     item;
   const [open, setOpen] = useState(false);
 
+  const [update, { isSuccess }] = useUpdateProductMutation();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = e.target;
-
     const name = f.name.value;
     const price = f.price.value;
     const description = f.description.value;
@@ -30,7 +32,9 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
     const image = f.image.value;
     const quantity = f.quantity.value;
     const brand = f.brand.value;
+
     const formData = {
+      _id,
       name,
       price,
       description,
@@ -39,7 +43,10 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
       quantity,
       brand,
     };
-    console.log(formData);
+    update(formData);
+    if (isSuccess) {
+      setOpen(false);
+    }
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>

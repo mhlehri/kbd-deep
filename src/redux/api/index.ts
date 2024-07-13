@@ -40,6 +40,16 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["products"],
     }),
+    updateProduct: builder.mutation({
+      query: ({ _id, ...body }) => {
+        console.log(_id, body, "from api");
+        return {
+          url: `/products/${_id}`,
+          method: "PUT",
+          body,
+        };
+      },
+    }),
   }),
 });
 
@@ -48,4 +58,5 @@ export const {
   useGetProductBySlugQuery,
   useAddProductMutation,
   useRemoveProductMutation,
+  useUpdateProductMutation,
 } = baseApi;
