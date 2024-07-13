@@ -5,6 +5,7 @@ import Hero from "../components/section/Hero";
 import Service from "../components/section/Service";
 import Testimonial from "../components/section/Testimonial";
 import Why from "../components/section/Why";
+import Customizable from "../components/section/Customizable";
 
 export default function Home() {
   useEffect(() => {
@@ -18,7 +19,7 @@ export default function Home() {
       <FeaturedBrand />
       <Testimonial />
       <Why />
-      <div>two extra section</div>
+      <Customizable />
     </div>
   );
 }
