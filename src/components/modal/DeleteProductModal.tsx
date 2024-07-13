@@ -10,8 +10,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { toast } from "../ui/use-toast";
 import { useRemoveProductMutation } from "../../redux/api";
+import { toast } from "sonner";
 
 export default function DeleteProductModal({ id }: { id: string }) {
   const [removeProduct] = useRemoveProductMutation();
@@ -39,11 +39,11 @@ export default function DeleteProductModal({ id }: { id: string }) {
             <Button
               onClick={async () => {
                 const res = await removeProduct(id);
-                toast({
-                  title: `${res.data.message}` || "something went wrong",
-                  variant: `${res.data.success ? "success" : "destructive"}`,
-                  duration: 1000,
-                });
+                if (res.data.success) {
+                  toast.success(`${res.data.message}`);
+                } else {
+                  toast.error(`${res.data.message}`);
+                }
               }}
               variant="destructive"
             >

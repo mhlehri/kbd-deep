@@ -14,8 +14,8 @@ import { Button } from "../components/ui/button";
 import { TProduct } from "../type";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { addItem } from "../redux/features/CartSlice";
-import { toast } from "../components/ui/use-toast";
 import { useGetProductBySlugQuery } from "../redux/api";
+import { toast } from "sonner";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -45,11 +45,7 @@ export default function ProductDetails() {
   const AlreadyAdded = cart.filter((i) => i.slug === slug);
 
   const AddToCartHandler = () => {
-    toast({
-      title: "successfully added to cart.",
-      variant: "success",
-      duration: 1000,
-    });
+    toast.success("successfully added to cart.");
     dispatch(
       addItem({
         name,

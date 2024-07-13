@@ -14,7 +14,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { useUpdateProductMutation } from "../../redux/api";
-import { toast } from "../ui/use-toast";
+import { toast } from "sonner";
 
 export default function UpdateProductModal({ item }: { item: TProduct }) {
   const { _id, brand, description, image, name, price, quantity, rating } =
@@ -43,10 +43,7 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
       fQuantity == quantity &&
       fBrand == brand
     ) {
-      toast({
-        title: "You didn't change anything.",
-        variant: "destructive",
-      });
+      toast.error("You didn't change anything.");
     } else {
       const formData: Partial<TProduct> = {
         _id,
@@ -62,16 +59,10 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
       const res = await update(formData);
       if (res.data.success) {
         setOpen(false);
-        toast({
-          title: `${res.data.message}`,
-          variant: "success",
-        });
+        toast.success(`${res.data.message}`);
       } else {
         setOpen(false);
-        toast({
-          title: `${res.data.message}`,
-          variant: "destructive",
-        });
+        toast.error(`${res.data.message}`);
       }
     }
   };

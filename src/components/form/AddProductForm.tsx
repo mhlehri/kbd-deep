@@ -16,7 +16,7 @@ import { Input } from "../../components/ui/input";
 import { useAddProductMutation } from "../../redux/api";
 import Title from "../Title";
 import { Textarea } from "../ui/textarea";
-import { toast } from "../ui/use-toast";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z
@@ -82,11 +82,11 @@ export default function AddProductForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const slug = values.name.replace(/\s/g, "-").toLowerCase();
     const res = await addProduct({ slug, ...values });
-    toast({
-      title: `${res.data.message}`,
-      variant: `${res.data.success ? "success" : "destructive"}`,
-      duration: 1000,
-    });
+    if (res.data.success) {
+      toast.success(`${res.data.message}`);
+    } else {
+      toast.error(`${res.data.message}`);
+    }
   }
 
   return (
