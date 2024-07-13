@@ -24,10 +24,14 @@ const CartSlice = createSlice({
       const found = state.items.find((item) => {
         return action.payload.slug === item.slug;
       });
+
       if (!found) {
         state.items.push(action.payload);
+      } else {
+        found.quantity += 1;
       }
     },
+
     removeItem: (state, action) => {
       state.items = state.items.filter((item) => item.slug !== action.payload);
     },

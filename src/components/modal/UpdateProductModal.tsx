@@ -22,9 +22,10 @@ export default function UpdateProductModal({ item }: { item: TProduct }) {
   const [open, setOpen] = useState(false);
 
   const [update] = useUpdateProductMutation();
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
     const f = e.target;
     const fName = f.name.value;
     const fPrice = f.price.value;

@@ -14,6 +14,7 @@ export default function Qty({
   stock: number;
 }) {
   const [qty, setQty] = useState(quantity);
+
   const dispatch = useAppDispatch();
   return (
     <div className="flex">

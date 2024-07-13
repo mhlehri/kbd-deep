@@ -6,16 +6,17 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { toast } from "sonner";
 import Loading from "../components/Loading";
 import NotDataFound from "../components/NotDataFound";
 import Rating from "../components/Rating";
+import Qty from "../components/table/Qty";
 import Title from "../components/Title";
 import { Button } from "../components/ui/button";
-import { TProduct } from "../type";
-import { useAppDispatch, useAppSelector } from "../redux/hook";
-import { addItem } from "../redux/features/CartSlice";
 import { useGetProductBySlugQuery } from "../redux/api";
-import { toast } from "sonner";
+import { addItem } from "../redux/features/CartSlice";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { TProduct } from "../type";
 
 export default function ProductDetails() {
   useEffect(() => {
@@ -42,7 +43,8 @@ export default function ProductDetails() {
 
   const dispatch = useAppDispatch();
   const cart = useAppSelector((state) => state.cart.items);
-  const AlreadyAdded = cart.filter((i) => i.slug === slug);
+  const AlreadyAdded = cart.find((i) => i.slug === slug);
+  console.log(AlreadyAdded);
 
   const AddToCartHandler = () => {
     toast.success("successfully added to cart.");
@@ -83,13 +85,24 @@ export default function ProductDetails() {
               <h6 className="bg-zinc-100 text-sm inline-block p-1 rounded-lg">
                 Availablity: {quantity} in stock
               </h6>
+              <Qty
+                slug={slug}
+                quantity={AlreadyAdded?.quantity || 1}
+                stock={quantity}
+              />
               <Button
                 onClick={AddToCartHandler}
-                disabled={quantity <= 0 || AlreadyAdded?.length ? true : false}
+                disabled={
+                  AlreadyAdded && AlreadyAdded?.quantity >= AlreadyAdded.stock
+                }
                 className="flex gap-2"
               >
                 <ShoppingCart />{" "}
-                {AlreadyAdded.length ? "Already Added" : "Add to Cart"}
+                {AlreadyAdded && AlreadyAdded?.quantity >= AlreadyAdded?.stock
+                  ? "reached limit"
+                  : AlreadyAdded
+                  ? "Already Added"
+                  : "Add to Cart"}
               </Button>
             </div>
           </div>

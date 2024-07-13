@@ -66,7 +66,7 @@ export default function Navbar() {
                 <div className="flex gap-5 mt-4 sm:hidden">
                   <button className="relative">
                     <span className="absolute -right-1 -top-2 bg-zinc-100 rounded-full p-1 text-xs leading-none">
-                      0
+                      {cart.length}
                     </span>
                     <ShoppingCart />
                   </button>

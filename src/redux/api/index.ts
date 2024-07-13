@@ -9,13 +9,15 @@ export const baseApi = createApi({
 
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (search) => {
+      query: (query) => {
+        console.log(query);
         const params = new URLSearchParams();
-
-        if (search) {
-          params.append("search", search);
+        if (query.search) {
+          params.append("search", query.search);
         }
-
+        if (query.sort) {
+          params.append("sort", query.sort);
+        }
         return {
           url: `/products`,
           method: "GET",

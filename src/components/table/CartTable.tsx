@@ -1,7 +1,18 @@
-import { Trash2 } from "lucide-react";
+import { Delete } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { removeItem, resetItem } from "../../redux/features/CartSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { Button } from "../ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 import {
   Table,
   TableBody,
@@ -12,17 +23,6 @@ import {
   TableRow,
 } from "../ui/table";
 import Qty from "./Qty";
-import { toast } from "sonner";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { useState } from "react";
 
 export function CartTable() {
   const cart = useAppSelector((state) => state.cart.items);
@@ -68,7 +68,7 @@ export function CartTable() {
                       variant="outline"
                       className="text-red-500"
                     >
-                      <Trash2 />
+                      <Delete />
                     </Button>
                   </TableCell>
                 </TableRow>

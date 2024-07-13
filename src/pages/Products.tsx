@@ -17,17 +17,28 @@ import { TProduct } from "../type";
 import { Search } from "lucide-react";
 import useDebounce from "../hooks/useDebounce";
 
-export function SortBy() {
+export function SortBy({
+  sort,
+  setSort,
+}: {
+  sort: string;
+  setSort: React.Dispatch<React.SetStateAction<string>>;
+}) {
   return (
-    <Select>
+    <Select
+      value={sort}
+      onValueChange={(value) => {
+        setSort(value);
+      }}
+    >
       <SelectTrigger className="max-w-[180px]">
         <SelectValue placeholder="Sort by" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Price sort</SelectLabel>
-          <SelectItem value="low-to-high">Low to High</SelectItem>
-          <SelectItem value="high-to-low">High to Low</SelectItem>
+          <SelectItem value="asc">Low to High</SelectItem>
+          <SelectItem value="desc">High to Low</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>
@@ -36,10 +47,13 @@ export function SortBy() {
 
 export default function Products() {
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState("");
 
   const debounceValue = useDebounce(search);
-  const { data, isFetching, isLoading, isSuccess } =
-    useGetProductsQuery(debounceValue);
+  const { data, isFetching, isLoading, isSuccess } = useGetProductsQuery({
+    search: debounceValue,
+    sort,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -59,12 +73,12 @@ export default function Products() {
           />
           <Search className="text-xs text-zinc-500 absolute" />
         </div>
-        <SortBy />
+        <SortBy sort={sort} setSort={setSort} />
       </div>
 
-      {!isSuccess && isLoading ? (
+      {isLoading ? (
         <Loading />
-      ) : isFetching ? (
+      ) : debounceValue && isFetching ? (
         <Loading />
       ) : isSuccess && data?.data.length ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">

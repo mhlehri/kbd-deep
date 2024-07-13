@@ -19,7 +19,7 @@ export default function Cart() {
             <ShoppingCart /> Shopping Cart
           </Title>
           <CartTable />
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between flex-col-reverse md:flex-row gap-10 items-center">
             <div className="space-y-2">
               <Title>
                 <ShoppingBag /> Shop More

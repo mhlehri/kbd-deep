@@ -9,7 +9,8 @@ export default function App() {
   useEffect(() => {
     const haveCartItem = cart.length > 0;
 
-    const handleBeforeUnload = (event) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handleBeforeUnload = (event: any) => {
       if (haveCartItem) {
         const message =
           "You have unsaved changes. Are you sure you want to leave?";
