@@ -4,6 +4,7 @@ export const baseApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://kbd-deep-server.vercel.app/api",
+    // baseUrl: "http://localhost:1000/api",
   }),
   tagTypes: ["products"],
 
@@ -20,7 +21,6 @@ export const baseApi = createApi({
         if (query?.min) {
           params.append("min", query.min);
         }
-        console.log(query?.min);
         if (query?.max) {
           params.append("max", query.max);
         }
@@ -72,12 +72,23 @@ export const baseApi = createApi({
       },
       invalidatesTags: ["products"],
     }),
+    updateProducts: builder.mutation({
+      query: (body) => {
+        return {
+          url: `/products`,
+          method: "PUT",
+          body,
+        };
+      },
+      invalidatesTags: ["products"],
+    }),
   }),
 });
 
 export const {
   useGetProductsQuery,
   useGetProductBySlugQuery,
+  useUpdateProductsMutation,
   useAddProductMutation,
   useRemoveProductMutation,
   useUpdateProductMutation,

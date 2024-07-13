@@ -4,6 +4,7 @@ import FeaturedProduct from "../components/section/FeaturedProduct";
 import Hero from "../components/section/Hero";
 import Service from "../components/section/Service";
 import Testimonial from "../components/section/Testimonial";
+import Why from "../components/section/Why";
 
 export default function Home() {
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function Home() {
       <FeaturedProduct />
       <FeaturedBrand />
       <Testimonial />
+      <Why />
       <div>two extra section</div>
     </div>
   );

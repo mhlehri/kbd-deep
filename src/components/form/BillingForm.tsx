@@ -1,4 +1,4 @@
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
   Card,
@@ -10,9 +10,16 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { useUpdateProductsMutation } from "../../redux/api";
+import { useAppDispatch, useAppSelector } from "../../redux/hook";
+import { toast } from "sonner";
+import { resetItem } from "../../redux/features/CartSlice";
 
 export default function BillingForm() {
   const navigate = useNavigate();
+  const cart = useAppSelector((state) => state.cart.items);
+  const dispatch = useAppDispatch();
+  const [updateData] = useUpdateProductsMutation();
   return (
     <Card>
       <CardHeader>
@@ -23,9 +30,15 @@ export default function BillingForm() {
       </CardHeader>
       <CardContent>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            navigate("/success");
+            const res = await updateData(cart);
+            if (res.data.success) {
+              navigate("/success");
+              dispatch(resetItem());
+            } else {
+              toast.error("Failed to place your oder!");
+            }
           }}
           className="space-y-3 max-w-md"
         >
