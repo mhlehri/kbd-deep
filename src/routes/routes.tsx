@@ -8,6 +8,7 @@ import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
 import Dashboard from "../pages/Dashboard";
 import ProductDetails from "../pages/ProductDetails";
+import Success from "../pages/Success";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
         path: "products/:productSlug",
         element: <ProductDetails />,
       },
+      { path: "success", element: <Success /> },
       { path: "cart", element: <Cart /> },
       { path: "checkout", element: <Checkout /> },
       { path: "dashboard", element: <Dashboard /> },
@@ -33,5 +35,4 @@ export const router = createBrowserRouter([
       { path: "contact-us", element: <ContactUs /> },
     ],
   },
-  {},
 ]);
