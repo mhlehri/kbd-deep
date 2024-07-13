@@ -13,7 +13,7 @@ export default function Why() {
         Why Choose Mechanical Keyboards?
       </Title>
       <p>Here are common FAQ.</p>
-      <div className="space-y-6  mt-10 flex gap-10 justify-between">
+      <div className="mt-10 flex gap-10 justify-center items-center lg:justify-between flex-col lg:flex-row">
         <Accordion
           type="single"
           collapsible
