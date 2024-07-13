@@ -24,14 +24,6 @@ export const router = createBrowserRouter([
       },
       {
         path: "products/:productSlug",
-        loader: async ({ request, params }) => {
-          return fetch(
-            `http:localhost:1000/api/products/${params.productSlug}`,
-            {
-              signal: request.signal,
-            }
-          );
-        },
         element: <ProductDetails />,
       },
       { path: "cart", element: <Cart /> },

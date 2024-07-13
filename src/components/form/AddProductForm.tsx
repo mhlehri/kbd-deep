@@ -44,7 +44,7 @@ const formSchema = z.object({
     .string({
       required_error: "Description is required.",
     })
-    .min(10, { message: "Description must be at least 10 characters long." }),
+    .min(2, { message: "Description must be at least 2 characters long." }),
   quantity: z
     .string({
       required_error: "Quantity is required.",
@@ -78,6 +78,7 @@ export default function AddProductForm() {
   });
 
   const [addProduct, { isLoading }] = useAddProductMutation();
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const slug = values.name.replace(/\s/g, "-").toLowerCase();
     const res = await addProduct({ slug, ...values });
@@ -217,8 +218,8 @@ export default function AddProductForm() {
             form.formState.isLoading ||
             form.formState.isSubmitting ||
             form.formState.isValidating ||
-            !form.formState.isDirty ||
-            !form.formState.isValid ||
+            // !form.formState.isDirty ||
+            // !form.formState.isValid ||
             isLoading
           }
           type="submit"

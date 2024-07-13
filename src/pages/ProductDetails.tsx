@@ -63,7 +63,7 @@ export default function ProductDetails() {
 
   return (
     <div>
-      {!isLoading && isSuccess && data ? (
+      {!isLoading && isSuccess && data?.data ? (
         <div>
           <div className="flex mt-10 text-zinc-600">
             products <ChevronRight />{" "}
@@ -89,7 +89,7 @@ export default function ProductDetails() {
               </h6>
               <Button
                 onClick={AddToCartHandler}
-                disabled={quantity <= 0 || AlreadyAdded.length ? true : false}
+                disabled={quantity <= 0 || AlreadyAdded?.length ? true : false}
                 className="flex gap-2"
               >
                 <ShoppingCart />{" "}

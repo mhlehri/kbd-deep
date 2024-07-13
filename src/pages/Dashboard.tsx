@@ -28,7 +28,7 @@ export default function Dashboard() {
             <Button variant="ghost">All Products</Button>
           </TabsTrigger>
           <TabsTrigger value="add-new-product" asChild>
-            <Button variant="ghost">Add New Products</Button>
+            <Button variant="ghost">Add New Product</Button>
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all-products">

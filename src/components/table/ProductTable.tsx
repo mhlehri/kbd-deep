@@ -1,7 +1,7 @@
-import { Edit, Trash2 } from "lucide-react";
-import { useGetProductsQuery, useRemoveProductMutation } from "../../redux/api";
+import { useGetProductsQuery } from "../../redux/api";
 import { TProduct } from "../../type";
-import { Button } from "../ui/button";
+import DeleteProductModal from "../modal/DeleteProductModal";
+import UpdateProductModal from "../modal/UpdateProductModal";
 import {
   Table,
   TableBody,
@@ -11,23 +11,11 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog";
-import { toast } from "../ui/use-toast";
 
 export default function ProductTable() {
   const { data, isLoading } = useGetProductsQuery(null);
-  const [removeProduct] = useRemoveProductMutation();
   return (
-    <div>
+    <div className="mb-10">
       <Table className="rounded-lg overflow-hidden bg-zinc-50">
         <TableCaption>
           A lists of all products available in the store
@@ -56,47 +44,8 @@ export default function ProductTable() {
                 <TableCell>{item.price}</TableCell>
                 <TableCell>{item.brand}</TableCell>
                 <TableCell className="flex gap-3 justify-end items-center">
-                  <Button variant="outline" className="text-blue-500">
-                    <Edit />
-                  </Button>
-
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="text-red-500">
-                        <Trash2 />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                        <DialogDescription>
-                          This action cannot be undone. This will permanently
-                          delete this product and remove data from servers.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <DialogFooter>
-                        <DialogClose asChild>
-                          <Button variant="outline">Cancel</Button>
-                        </DialogClose>
-                        <DialogClose asChild>
-                          <Button
-                            onClick={async () => {
-                              const res = await removeProduct(item._id);
-                              toast({
-                                title: `${res.data.message} || something went wrong`,
-                                variant: `${
-                                  res.data.success ? "success" : "destructive"
-                                }`,
-                              });
-                            }}
-                            variant="destructive"
-                          >
-                            Sure
-                          </Button>
-                        </DialogClose>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
+                  <UpdateProductModal item={item} />
+                  <DeleteProductModal id={item._id} />
                 </TableCell>
               </TableRow>
             ))
