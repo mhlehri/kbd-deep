@@ -42,13 +42,13 @@ export const baseApi = createApi({
     }),
     updateProduct: builder.mutation({
       query: ({ _id, ...body }) => {
-        console.log(_id, body, "from api");
         return {
           url: `/products/${_id}`,
           method: "PUT",
           body,
         };
       },
+      invalidatesTags: ["products"],
     }),
   }),
 });
