@@ -35,19 +35,15 @@ export function SortBy() {
 }
 
 export default function Products() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const [search, setSearch] = useState("");
-  // const [dataArr, setDataArr] = useState([]);
 
   const debounceValue = useDebounce(search);
-  const { data, isFetching, isSuccess } = useGetProductsQuery(debounceValue);
+  const { data, isFetching, isLoading, isSuccess } =
+    useGetProductsQuery(debounceValue);
 
   useEffect(() => {
-    console.log(isFetching);
-  }, [debounceValue, isFetching]);
+    window.scrollTo(0, 0);
+  }, [debounceValue]);
 
   return (
     <div>
@@ -66,7 +62,9 @@ export default function Products() {
         <SortBy />
       </div>
 
-      {isFetching ? (
+      {!isSuccess && isLoading ? (
+        <Loading />
+      ) : isFetching ? (
         <Loading />
       ) : isSuccess && data?.data.length ? (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-center gap-5 my-10">

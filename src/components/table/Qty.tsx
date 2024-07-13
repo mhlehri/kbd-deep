@@ -32,7 +32,7 @@ export default function Qty({
         onChange={(e) => {
           const v =
             e.target.value == ""
-              ? 0
+              ? 1
               : parseInt(e.target.value) <= stock
               ? parseInt(e.target.value)
               : qty;
