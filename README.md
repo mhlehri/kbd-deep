@@ -75,7 +75,6 @@ KBD DEEP is built with a robust tech stack that includes React, Redux, Vite, Typ
    ```bash
    PORT=your_port_number
    URI=your_db_connection_uri
-   API_KEY=your_api_key_here
    ```
 
 ## Usage
